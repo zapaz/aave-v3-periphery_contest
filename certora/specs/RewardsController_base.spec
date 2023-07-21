@@ -10,7 +10,7 @@ import "methods/Methods_base.spec";
         f(e, args);
 
         uint256 index_ = getAssetRewardIndex(asset, reward);
-        
+
         assert index_ >= _index;
     }
 
@@ -18,17 +18,16 @@ import "methods/Methods_base.spec";
     invariant user_index_LEQ_index(address asset, address reward, address user)
         getUserAssetIndex(user, asset, reward) <= getAssetRewardIndex(asset, reward);
 
-
-    // check this rule for every change in setup to make sure all is reachable 
+    // check this rule for every change in setup to make sure all is reachable
     // use builtin rule sanity;
 
-    //  Property: claiming reward twice is equivalent to one claim reward 
-    //  Note : this rule is implemented by comparing the whole storage 
+    //  Property: claiming reward twice is equivalent to one claim reward
+    //  Note : this rule is implemented by comparing the whole storage
     rule noDoubleClaim() {
 
-        env e; 
+        env e;
         //arbitrary array of any length (might be constrained due to loop unrolling )
-        address[] assets; 
+        address[] assets;
         uint256 l = assets.length;
         address to;
         claimAllRewards(e, assets, to);

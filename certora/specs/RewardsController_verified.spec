@@ -1,3 +1,8 @@
-import "methods/Methods_base.spec";
+import "./RewardsController_base.spec";
 
-///////////////// Properties ///////////////////////
+use invariant user_index_LEQ_index;
+
+use rule index_keeps_growing;
+use rule noDoubleClaim;
+use rule onlyAuthorizeCanDecrease;
+
