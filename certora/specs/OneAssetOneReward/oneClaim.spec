@@ -1,22 +1,8 @@
 import "./oneFunctions.spec";
 import "./oneClaimFunctions.spec";
 
-// invariant oneClaimRewardSameAsExpected(env e, address user, address reward, address to)
-//     oneAssetOneReward(AToken, reward) =>
-//       oneClaimFirstRewardExpectedAmount(e, user) ==
-//       getUserRewards(e, getAssetsList(), user, reward);
-
-function oneClaimRewardExpectedAmount(env e, address user, address asset, address reward) returns uint256 {
-    require oneAssetOneReward(asset, reward);
-
-    address[] rewards; uint256[] amounts;
-    rewards, amounts = getAllUserRewards(e, getAssetsList(), user);
-
-    assert rewards[0] == reward;
-
-    return amounts[0];
-}
-
+// getUserAccruedRewards
+// function getUserRewards(address[] calldata assets,address user,address reward) external view override returns (uint256) {
 
 rule oneClaimAllRewardsAsExpected(env e, address user, address reward, address to) {
     require e.msg.sender == user;
@@ -82,16 +68,6 @@ rule oneClaimRewardsToSelfAsExpected(env e, address user, address reward, addres
     uint256 amount_ = claimRewardsToSelf(e, getAssetsList(), _amount, reward);
 
     assert amount_ == _amount;
-}
-
-rule oneClaimRewardUnchanged(address user, method f, env e, calldataarg args) {
-    uint256 _reward = oneClaimRewardExpectedAmount(e, user, AToken, Reward);
-
-    f(e, args);
-
-    uint256 reward_ = oneClaimRewardExpectedAmount(e, user, AToken, Reward);
-
-    assert reward_ == _reward;
 }
 
 

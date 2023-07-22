@@ -19,4 +19,13 @@ contract RewardsControllerHarness is RewardsController {
     function getAvailableRewardsCount(address asset) external view returns (uint128) {
         return _assets[asset].availableRewardsCount;
     }
+
+    function inArray(address addr, address[] memory array ) public pure returns (bool) {
+        for (uint256 i = 0; i < array.length; i++) {
+            if (array[i] == addr) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

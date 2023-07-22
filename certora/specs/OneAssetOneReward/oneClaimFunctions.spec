@@ -1,5 +1,10 @@
 import "./oneFunctions.spec";
 
+// invariant oneClaimRewardSameAsExpected(env e, address user, address reward, address to)
+//     oneAssetOneReward(AToken, reward) =>
+//       oneClaimFirstRewardExpectedAmount(e, user) ==
+//       getUserRewards(e, getAssetsList(), user, reward);
+
 function oneClaimRewardExpectedAmount(env e, address user, address asset, address reward) returns uint256 {
     require oneAssetOneReward(asset, reward);
 
