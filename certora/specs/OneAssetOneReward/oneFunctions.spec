@@ -11,15 +11,17 @@ function oneAsset(address asset) returns bool {
 
 function oneReward(address reward) returns bool {
     address[] rewardsList = getRewardsList();
-    address[] rewardsByAsset = getRewardsByAsset(AToken);
 
-    return rewardsByAsset.length == 1
-        && rewardsByAsset[0] == reward
-        && rewardsList.length == 1
-        && rewardsList[0] == reward
-        && getAvailableRewardsCount(AToken) == 1;
+    return  rewardsList.length == 1
+        && rewardsList[0] == reward;
 }
 
 function oneAssetOneReward(address asset, address reward) returns bool {
-  return oneAsset(asset) && oneReward(reward);
+    address[] rewardsByAsset = getRewardsByAsset(asset);
+
+    return oneAsset(asset)
+        && oneReward(reward)
+        && rewardsByAsset.length == 1
+        && rewardsByAsset[0] == reward
+        && getAvailableRewardsCount(asset) == 1;
 }

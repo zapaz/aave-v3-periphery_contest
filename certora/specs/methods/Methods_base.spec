@@ -1,5 +1,4 @@
 import "./ERC20_methods.spec";
-import "./Methods_more.spec";
 
 using DummyERC20_AToken as AToken;
 
