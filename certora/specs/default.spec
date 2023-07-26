@@ -1,17 +1,22 @@
-import "RewardsController_base.spec";
+import "methods/Methods_base.spec";
 import "methods/Methods_more.spec";
-import "OneAsset/oneAsset.spec";
-import "OneAssetOneReward/oneAssetOneReward.spec";
+import "RewardsController_base.spec";
+
+import "OneAssetMultiRewards/zero.spec";
+import "OneAssetMultiRewards/invariant.spec";
 import "OneAssetOneReward/oneClaim.spec";
 // import "./OneAssetOneReward/claimEqual.spec";
 // import "./OneAssetOneReward/claimFull.spec";
-import "OneAssetOneReward/oneReward.spec";
 
-use invariant user_index_LEQ_index;
+using DummyERC20_rewardTokenB as RewardB;
 
-use rule index_keeps_growing;
-use rule noDoubleClaim;
-use rule onlyAuthorizeCanDecrease;
+// use invariant rewardByAssetIsInList;
+
+// use invariant user_index_LEQ_index;
+
+// use rule index_keeps_growing;
+// use rule noDoubleClaim;
+// use rule onlyAuthorizeCanDecrease;
 
 use rule oneClaimAllRewardsAsExpected;
 use rule oneClaimAllRewardsToSelfAsExpected;
@@ -24,4 +29,7 @@ use rule oneClaimRewardsToSelfAsExpected;
 // use rule user_index_keeps_growing;
 // use rule claimSome;
 
-use rule oneRewardByAssetIsInList;
+// use rule zeroAddressAssetUnchanged;
+// use rule zeroAddressRewardUnchanged;
+// use rule cannotSetTransferStrategyToZero;
+

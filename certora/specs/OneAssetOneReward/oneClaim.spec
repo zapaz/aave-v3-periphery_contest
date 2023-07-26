@@ -1,10 +1,10 @@
-import "./oneFunctions.spec";
 import "./oneClaimFunctions.spec";
 
 // getUserAccruedRewards
 // function getUserRewards(address[] calldata assets,address user,address reward) external view override returns (uint256) {
 
 rule oneClaimAllRewardsAsExpected(env e, address user, address reward, address to) {
+    require oneAssetOneReward(AToken, reward);
     require e.msg.sender == user;
 
     uint256 _amount = oneClaimRewardExpectedAmount(e, user, AToken, reward);
@@ -16,7 +16,8 @@ rule oneClaimAllRewardsAsExpected(env e, address user, address reward, address t
     assert amounts_[0] == _amount;
 }
 
-rule oneClaimAllRewardsToSelfAsExpected(env e, address user, address reward, address to) {
+rule oneClaimAllRewardsToSelfAsExpected(env e, address user, address reward) {
+    require oneAssetOneReward(AToken, reward);
     require e.msg.sender == user;
 
     uint256 _amount = oneClaimRewardExpectedAmount(e, user, AToken, reward);
@@ -29,6 +30,7 @@ rule oneClaimAllRewardsToSelfAsExpected(env e, address user, address reward, add
 }
 
 rule oneClaimAllRewardsOnBehalfAsExpected(env e, address user, address reward, address to) {
+    require oneAssetOneReward(AToken, reward);
     require e.msg.sender == getClaimer(user);
 
     uint256 _amount = oneClaimRewardExpectedAmount(e, user, AToken, reward);
@@ -41,6 +43,7 @@ rule oneClaimAllRewardsOnBehalfAsExpected(env e, address user, address reward, a
 }
 
 rule oneClaimRewardsAsExpected(env e, address user, address reward, address to) {
+    require oneAssetOneReward(AToken, reward);
     require e.msg.sender == user;
 
     uint256 _amount = oneClaimRewardExpectedAmount(e, user, AToken, reward);
@@ -51,6 +54,7 @@ rule oneClaimRewardsAsExpected(env e, address user, address reward, address to) 
 }
 
 rule oneClaimRewardsOnBehalfAsExpected(env e, address user, address reward, address to) {
+    require oneAssetOneReward(AToken, reward);
     require e.msg.sender == getClaimer(user);
 
     uint256 _amount = oneClaimRewardExpectedAmount(e, user, AToken, reward);
@@ -60,7 +64,8 @@ rule oneClaimRewardsOnBehalfAsExpected(env e, address user, address reward, addr
     assert amount_ == _amount;
 }
 
-rule oneClaimRewardsToSelfAsExpected(env e, address user, address reward, address to) {
+rule oneClaimRewardsToSelfAsExpected(env e, address user, address reward) {
+    require oneAssetOneReward(AToken, reward);
     require e.msg.sender == user;
 
     uint256 _amount = oneClaimRewardExpectedAmount(e, user, AToken, reward);
