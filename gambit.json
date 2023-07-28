@@ -1,0 +1,8 @@
+{
+    "filename": "contracts/rewards/RewardsController.sol",
+    "outdir": "certora/tests/gambit",
+    "skip_validate": false,
+    "solc_remappings": [
+        "@aave=node_modules/@aave"
+    ]
+}

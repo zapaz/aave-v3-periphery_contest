@@ -1,0 +1,279 @@
+{
+  "absolutePath": "/Users/alain/DEV/aave-v3-periphery_contest/node_modules/@aave/core-v3/contracts/dependencies/openzeppelin/contracts/IERC20Detailed.sol",
+  "exportedSymbols":
+  {
+    "IERC20":
+    [
+      3662
+    ],
+    "IERC20Detailed":
+    [
+      3402
+    ]
+  },
+  "id": 3403,
+  "license": "AGPL-3.0",
+  "nodeType": "SourceUnit",
+  "nodes":
+  [
+    {
+      "id": 3382,
+      "literals":
+      [
+        "solidity",
+        "0.8",
+        ".10"
+      ],
+      "nodeType": "PragmaDirective",
+      "src": "37:23:1"
+    },
+    {
+      "absolutePath": "/Users/alain/DEV/aave-v3-periphery_contest/node_modules/@aave/core-v3/contracts/dependencies/openzeppelin/contracts/IERC20.sol",
+      "file": "./IERC20.sol",
+      "id": 3384,
+      "nameLocation": "-1:-1:-1",
+      "nodeType": "ImportDirective",
+      "scope": 3403,
+      "sourceUnit": 3663,
+      "src": "62:36:1",
+      "symbolAliases":
+      [
+        {
+          "foreign":
+          {
+            "id": 3383,
+            "name": "IERC20",
+            "nodeType": "Identifier",
+            "overloadedDeclarations": [],
+            "src": "70:6:1",
+            "typeDescriptions": {}
+          },
+          "nameLocation": "-1:-1:-1"
+        }
+      ],
+      "unitAlias": ""
+    },
+    {
+      "abstract": false,
+      "baseContracts":
+      [
+        {
+          "baseName":
+          {
+            "id": 3385,
+            "name": "IERC20",
+            "nodeType": "IdentifierPath",
+            "referencedDeclaration": 3662,
+            "src": "128:6:1"
+          },
+          "id": 3386,
+          "nodeType": "InheritanceSpecifier",
+          "src": "128:6:1"
+        }
+      ],
+      "canonicalName": "IERC20Detailed",
+      "contractDependencies": [],
+      "contractKind": "interface",
+      "fullyImplemented": false,
+      "id": 3402,
+      "linearizedBaseContracts":
+      [
+        3402,
+        3662
+      ],
+      "name": "IERC20Detailed",
+      "nameLocation": "110:14:1",
+      "nodeType": "ContractDefinition",
+      "nodes":
+      [
+        {
+          "functionSelector": "06fdde03",
+          "id": 3391,
+          "implemented": false,
+          "kind": "function",
+          "modifiers": [],
+          "name": "name",
+          "nameLocation": "148:4:1",
+          "nodeType": "FunctionDefinition",
+          "parameters":
+          {
+            "id": 3387,
+            "nodeType": "ParameterList",
+            "parameters": [],
+            "src": "152:2:1"
+          },
+          "returnParameters":
+          {
+            "id": 3390,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 3389,
+                "mutability": "mutable",
+                "name": "",
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "VariableDeclaration",
+                "scope": 3391,
+                "src": "178:13:1",
+                "stateVariable": false,
+                "storageLocation": "memory",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_string_memory_ptr",
+                  "typeString": "string"
+                },
+                "typeName":
+                {
+                  "id": 3388,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "178:6:1",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "177:15:1"
+          },
+          "scope": 3402,
+          "src": "139:54:1",
+          "stateMutability": "view",
+          "virtual": false,
+          "visibility": "external"
+        },
+        {
+          "functionSelector": "95d89b41",
+          "id": 3396,
+          "implemented": false,
+          "kind": "function",
+          "modifiers": [],
+          "name": "symbol",
+          "nameLocation": "206:6:1",
+          "nodeType": "FunctionDefinition",
+          "parameters":
+          {
+            "id": 3392,
+            "nodeType": "ParameterList",
+            "parameters": [],
+            "src": "212:2:1"
+          },
+          "returnParameters":
+          {
+            "id": 3395,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 3394,
+                "mutability": "mutable",
+                "name": "",
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "VariableDeclaration",
+                "scope": 3396,
+                "src": "238:13:1",
+                "stateVariable": false,
+                "storageLocation": "memory",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_string_memory_ptr",
+                  "typeString": "string"
+                },
+                "typeName":
+                {
+                  "id": 3393,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "238:6:1",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "237:15:1"
+          },
+          "scope": 3402,
+          "src": "197:56:1",
+          "stateMutability": "view",
+          "virtual": false,
+          "visibility": "external"
+        },
+        {
+          "functionSelector": "313ce567",
+          "id": 3401,
+          "implemented": false,
+          "kind": "function",
+          "modifiers": [],
+          "name": "decimals",
+          "nameLocation": "266:8:1",
+          "nodeType": "FunctionDefinition",
+          "parameters":
+          {
+            "id": 3397,
+            "nodeType": "ParameterList",
+            "parameters": [],
+            "src": "274:2:1"
+          },
+          "returnParameters":
+          {
+            "id": 3400,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 3399,
+                "mutability": "mutable",
+                "name": "",
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "VariableDeclaration",
+                "scope": 3401,
+                "src": "300:5:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName":
+                {
+                  "id": 3398,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "300:5:1",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "299:7:1"
+          },
+          "scope": 3402,
+          "src": "257:50:1",
+          "stateMutability": "view",
+          "virtual": false,
+          "visibility": "external"
+        }
+      ],
+      "scope": 3403,
+      "src": "100:209:1",
+      "usedErrors": []
+    }
+  ],
+  "src": "37:273:1"
+}

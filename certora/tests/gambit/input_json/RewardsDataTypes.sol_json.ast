@@ -1,0 +1,911 @@
+{
+  "absolutePath": "contracts/rewards/libraries/RewardsDataTypes.sol",
+  "exportedSymbols":
+  {
+    "IEACAggregatorProxy":
+    [
+      1615
+    ],
+    "ITransferStrategyBase":
+    [
+      3316
+    ],
+    "RewardsDataTypes":
+    [
+      3380
+    ]
+  },
+  "id": 3381,
+  "license": "AGPL-3.0",
+  "nodeType": "SourceUnit",
+  "nodes":
+  [
+    {
+      "id": 3318,
+      "literals":
+      [
+        "solidity",
+        "^",
+        "0.8",
+        ".10"
+      ],
+      "nodeType": "PragmaDirective",
+      "src": "37:24:11"
+    },
+    {
+      "absolutePath": "contracts/rewards/interfaces/ITransferStrategyBase.sol",
+      "file": "../interfaces/ITransferStrategyBase.sol",
+      "id": 3320,
+      "nameLocation": "-1:-1:-1",
+      "nodeType": "ImportDirective",
+      "scope": 3381,
+      "sourceUnit": 3317,
+      "src": "63:78:11",
+      "symbolAliases":
+      [
+        {
+          "foreign":
+          {
+            "id": 3319,
+            "name": "ITransferStrategyBase",
+            "nodeType": "Identifier",
+            "overloadedDeclarations": [],
+            "src": "71:21:11",
+            "typeDescriptions": {}
+          },
+          "nameLocation": "-1:-1:-1"
+        }
+      ],
+      "unitAlias": ""
+    },
+    {
+      "absolutePath": "contracts/misc/interfaces/IEACAggregatorProxy.sol",
+      "file": "../../misc/interfaces/IEACAggregatorProxy.sol",
+      "id": 3322,
+      "nameLocation": "-1:-1:-1",
+      "nodeType": "ImportDirective",
+      "scope": 3381,
+      "sourceUnit": 1616,
+      "src": "142:82:11",
+      "symbolAliases":
+      [
+        {
+          "foreign":
+          {
+            "id": 3321,
+            "name": "IEACAggregatorProxy",
+            "nodeType": "Identifier",
+            "overloadedDeclarations": [],
+            "src": "150:19:11",
+            "typeDescriptions": {}
+          },
+          "nameLocation": "-1:-1:-1"
+        }
+      ],
+      "unitAlias": ""
+    },
+    {
+      "abstract": false,
+      "baseContracts": [],
+      "canonicalName": "RewardsDataTypes",
+      "contractDependencies": [],
+      "contractKind": "library",
+      "fullyImplemented": true,
+      "id": 3380,
+      "linearizedBaseContracts":
+      [
+        3380
+      ],
+      "name": "RewardsDataTypes",
+      "nameLocation": "234:16:11",
+      "nodeType": "ContractDefinition",
+      "nodes":
+      [
+        {
+          "canonicalName": "RewardsDataTypes.RewardsConfigInput",
+          "id": 3339,
+          "members":
+          [
+            {
+              "constant": false,
+              "id": 3324,
+              "mutability": "mutable",
+              "name": "emissionPerSecond",
+              "nameLocation": "294:17:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3339,
+              "src": "287:24:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_uint88",
+                "typeString": "uint88"
+              },
+              "typeName":
+              {
+                "id": 3323,
+                "name": "uint88",
+                "nodeType": "ElementaryTypeName",
+                "src": "287:6:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint88",
+                  "typeString": "uint88"
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3326,
+              "mutability": "mutable",
+              "name": "totalSupply",
+              "nameLocation": "325:11:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3339,
+              "src": "317:19:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              },
+              "typeName":
+              {
+                "id": 3325,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "317:7:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3328,
+              "mutability": "mutable",
+              "name": "distributionEnd",
+              "nameLocation": "349:15:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3339,
+              "src": "342:22:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_uint32",
+                "typeString": "uint32"
+              },
+              "typeName":
+              {
+                "id": 3327,
+                "name": "uint32",
+                "nodeType": "ElementaryTypeName",
+                "src": "342:6:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint32",
+                  "typeString": "uint32"
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3330,
+              "mutability": "mutable",
+              "name": "asset",
+              "nameLocation": "378:5:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3339,
+              "src": "370:13:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              },
+              "typeName":
+              {
+                "id": 3329,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "370:7:11",
+                "stateMutability": "nonpayable",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3332,
+              "mutability": "mutable",
+              "name": "reward",
+              "nameLocation": "397:6:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3339,
+              "src": "389:14:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              },
+              "typeName":
+              {
+                "id": 3331,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "389:7:11",
+                "stateMutability": "nonpayable",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3335,
+              "mutability": "mutable",
+              "name": "transferStrategy",
+              "nameLocation": "431:16:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3339,
+              "src": "409:38:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_contract$_ITransferStrategyBase_$3316",
+                "typeString": "contract ITransferStrategyBase"
+              },
+              "typeName":
+              {
+                "id": 3334,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode":
+                {
+                  "id": 3333,
+                  "name": "ITransferStrategyBase",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 3316,
+                  "src": "409:21:11"
+                },
+                "referencedDeclaration": 3316,
+                "src": "409:21:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_contract$_ITransferStrategyBase_$3316",
+                  "typeString": "contract ITransferStrategyBase"
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3338,
+              "mutability": "mutable",
+              "name": "rewardOracle",
+              "nameLocation": "473:12:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3339,
+              "src": "453:32:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_contract$_IEACAggregatorProxy_$1615",
+                "typeString": "contract IEACAggregatorProxy"
+              },
+              "typeName":
+              {
+                "id": 3337,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode":
+                {
+                  "id": 3336,
+                  "name": "IEACAggregatorProxy",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 1615,
+                  "src": "453:19:11"
+                },
+                "referencedDeclaration": 1615,
+                "src": "453:19:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_contract$_IEACAggregatorProxy_$1615",
+                  "typeString": "contract IEACAggregatorProxy"
+                }
+              },
+              "visibility": "internal"
+            }
+          ],
+          "name": "RewardsConfigInput",
+          "nameLocation": "262:18:11",
+          "nodeType": "StructDefinition",
+          "scope": 3380,
+          "src": "255:235:11",
+          "visibility": "public"
+        },
+        {
+          "canonicalName": "RewardsDataTypes.UserAssetBalance",
+          "id": 3346,
+          "members":
+          [
+            {
+              "constant": false,
+              "id": 3341,
+              "mutability": "mutable",
+              "name": "asset",
+              "nameLocation": "532:5:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3346,
+              "src": "524:13:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              },
+              "typeName":
+              {
+                "id": 3340,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "524:7:11",
+                "stateMutability": "nonpayable",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3343,
+              "mutability": "mutable",
+              "name": "userBalance",
+              "nameLocation": "551:11:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3346,
+              "src": "543:19:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              },
+              "typeName":
+              {
+                "id": 3342,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "543:7:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3345,
+              "mutability": "mutable",
+              "name": "totalSupply",
+              "nameLocation": "576:11:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3346,
+              "src": "568:19:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              },
+              "typeName":
+              {
+                "id": 3344,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "568:7:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "visibility": "internal"
+            }
+          ],
+          "name": "UserAssetBalance",
+          "nameLocation": "501:16:11",
+          "nodeType": "StructDefinition",
+          "scope": 3380,
+          "src": "494:98:11",
+          "visibility": "public"
+        },
+        {
+          "canonicalName": "RewardsDataTypes.UserData",
+          "id": 3351,
+          "members":
+          [
+            {
+              "constant": false,
+              "id": 3348,
+              "mutability": "mutable",
+              "name": "index",
+              "nameLocation": "689:5:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3351,
+              "src": "681:13:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_uint104",
+                "typeString": "uint104"
+              },
+              "typeName":
+              {
+                "id": 3347,
+                "name": "uint104",
+                "nodeType": "ElementaryTypeName",
+                "src": "681:7:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint104",
+                  "typeString": "uint104"
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3350,
+              "mutability": "mutable",
+              "name": "accrued",
+              "nameLocation": "783:7:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3351,
+              "src": "775:15:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_uint128",
+                "typeString": "uint128"
+              },
+              "typeName":
+              {
+                "id": 3349,
+                "name": "uint128",
+                "nodeType": "ElementaryTypeName",
+                "src": "775:7:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint128",
+                  "typeString": "uint128"
+                }
+              },
+              "visibility": "internal"
+            }
+          ],
+          "name": "UserData",
+          "nameLocation": "603:8:11",
+          "nodeType": "StructDefinition",
+          "scope": 3380,
+          "src": "596:199:11",
+          "visibility": "public"
+        },
+        {
+          "canonicalName": "RewardsDataTypes.RewardData",
+          "id": 3365,
+          "members":
+          [
+            {
+              "constant": false,
+              "id": 3353,
+              "mutability": "mutable",
+              "name": "index",
+              "nameLocation": "881:5:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3365,
+              "src": "873:13:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_uint104",
+                "typeString": "uint104"
+              },
+              "typeName":
+              {
+                "id": 3352,
+                "name": "uint104",
+                "nodeType": "ElementaryTypeName",
+                "src": "873:7:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint104",
+                  "typeString": "uint104"
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3355,
+              "mutability": "mutable",
+              "name": "emissionPerSecond",
+              "nameLocation": "953:17:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3365,
+              "src": "946:24:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_uint88",
+                "typeString": "uint88"
+              },
+              "typeName":
+              {
+                "id": 3354,
+                "name": "uint88",
+                "nodeType": "ElementaryTypeName",
+                "src": "946:6:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint88",
+                  "typeString": "uint88"
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3357,
+              "mutability": "mutable",
+              "name": "lastUpdateTimestamp",
+              "nameLocation": "1032:19:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3365,
+              "src": "1025:26:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_uint32",
+                "typeString": "uint32"
+              },
+              "typeName":
+              {
+                "id": 3356,
+                "name": "uint32",
+                "nodeType": "ElementaryTypeName",
+                "src": "1025:6:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint32",
+                  "typeString": "uint32"
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3359,
+              "mutability": "mutable",
+              "name": "distributionEnd",
+              "nameLocation": "1123:15:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3365,
+              "src": "1116:22:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_uint32",
+                "typeString": "uint32"
+              },
+              "typeName":
+              {
+                "id": 3358,
+                "name": "uint32",
+                "nodeType": "ElementaryTypeName",
+                "src": "1116:6:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint32",
+                  "typeString": "uint32"
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3364,
+              "mutability": "mutable",
+              "name": "usersData",
+              "nameLocation": "1251:9:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3365,
+              "src": "1222:38:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_UserData_$3351_storage_$",
+                "typeString": "mapping(address => struct RewardsDataTypes.UserData)"
+              },
+              "typeName":
+              {
+                "id": 3363,
+                "keyType":
+                {
+                  "id": 3360,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1230:7:11",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "nodeType": "Mapping",
+                "src": "1222:28:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_struct$_UserData_$3351_storage_$",
+                  "typeString": "mapping(address => struct RewardsDataTypes.UserData)"
+                },
+                "valueType":
+                {
+                  "id": 3362,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode":
+                  {
+                    "id": 3361,
+                    "name": "UserData",
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 3351,
+                    "src": "1241:8:11"
+                  },
+                  "referencedDeclaration": 3351,
+                  "src": "1241:8:11",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_struct$_UserData_$3351_storage_ptr",
+                    "typeString": "struct RewardsDataTypes.UserData"
+                  }
+                }
+              },
+              "visibility": "internal"
+            }
+          ],
+          "name": "RewardData",
+          "nameLocation": "806:10:11",
+          "nodeType": "StructDefinition",
+          "scope": 3380,
+          "src": "799:466:11",
+          "visibility": "public"
+        },
+        {
+          "canonicalName": "RewardsDataTypes.AssetData",
+          "id": 3379,
+          "members":
+          [
+            {
+              "constant": false,
+              "id": 3370,
+              "mutability": "mutable",
+              "name": "rewards",
+              "nameLocation": "1410:7:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3379,
+              "src": "1379:38:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_RewardData_$3365_storage_$",
+                "typeString": "mapping(address => struct RewardsDataTypes.RewardData)"
+              },
+              "typeName":
+              {
+                "id": 3369,
+                "keyType":
+                {
+                  "id": 3366,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1387:7:11",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "nodeType": "Mapping",
+                "src": "1379:30:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_struct$_RewardData_$3365_storage_$",
+                  "typeString": "mapping(address => struct RewardsDataTypes.RewardData)"
+                },
+                "valueType":
+                {
+                  "id": 3368,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode":
+                  {
+                    "id": 3367,
+                    "name": "RewardData",
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 3365,
+                    "src": "1398:10:11"
+                  },
+                  "referencedDeclaration": 3365,
+                  "src": "1398:10:11",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_struct$_RewardData_$3365_storage_ptr",
+                    "typeString": "struct RewardsDataTypes.RewardData"
+                  }
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3374,
+              "mutability": "mutable",
+              "name": "availableRewards",
+              "nameLocation": "1503:16:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3379,
+              "src": "1475:44:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_mapping$_t_uint128_$_t_address_$",
+                "typeString": "mapping(uint128 => address)"
+              },
+              "typeName":
+              {
+                "id": 3373,
+                "keyType":
+                {
+                  "id": 3371,
+                  "name": "uint128",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1483:7:11",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint128",
+                    "typeString": "uint128"
+                  }
+                },
+                "nodeType": "Mapping",
+                "src": "1475:27:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_mapping$_t_uint128_$_t_address_$",
+                  "typeString": "mapping(uint128 => address)"
+                },
+                "valueType":
+                {
+                  "id": 3372,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1494:7:11",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3376,
+              "mutability": "mutable",
+              "name": "availableRewardsCount",
+              "nameLocation": "1577:21:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3379,
+              "src": "1569:29:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_uint128",
+                "typeString": "uint128"
+              },
+              "typeName":
+              {
+                "id": 3375,
+                "name": "uint128",
+                "nodeType": "ElementaryTypeName",
+                "src": "1569:7:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint128",
+                  "typeString": "uint128"
+                }
+              },
+              "visibility": "internal"
+            },
+            {
+              "constant": false,
+              "id": 3378,
+              "mutability": "mutable",
+              "name": "decimals",
+              "nameLocation": "1649:8:11",
+              "nodeType": "VariableDeclaration",
+              "scope": 3379,
+              "src": "1643:14:11",
+              "stateVariable": false,
+              "storageLocation": "default",
+              "typeDescriptions":
+              {
+                "typeIdentifier": "t_uint8",
+                "typeString": "uint8"
+              },
+              "typeName":
+              {
+                "id": 3377,
+                "name": "uint8",
+                "nodeType": "ElementaryTypeName",
+                "src": "1643:5:11",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                }
+              },
+              "visibility": "internal"
+            }
+          ],
+          "name": "AssetData",
+          "nameLocation": "1276:9:11",
+          "nodeType": "StructDefinition",
+          "scope": 3380,
+          "src": "1269:393:11",
+          "visibility": "public"
+        }
+      ],
+      "scope": 3381,
+      "src": "226:1438:11",
+      "usedErrors": []
+    }
+  ],
+  "src": "37:1628:11"
+}

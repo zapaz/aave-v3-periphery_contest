@@ -1,0 +1,625 @@
+{
+  "absolutePath": "contracts/rewards/interfaces/ITransferStrategyBase.sol",
+  "exportedSymbols":
+  {
+    "ITransferStrategyBase":
+    [
+      3316
+    ]
+  },
+  "id": 3317,
+  "license": "AGPL-3.0",
+  "nodeType": "SourceUnit",
+  "nodes":
+  [
+    {
+      "id": 3271,
+      "literals":
+      [
+        "solidity",
+        "^",
+        "0.8",
+        ".10"
+      ],
+      "nodeType": "PragmaDirective",
+      "src": "37:24:10"
+    },
+    {
+      "abstract": false,
+      "baseContracts": [],
+      "canonicalName": "ITransferStrategyBase",
+      "contractDependencies": [],
+      "contractKind": "interface",
+      "fullyImplemented": false,
+      "id": 3316,
+      "linearizedBaseContracts":
+      [
+        3316
+      ],
+      "name": "ITransferStrategyBase",
+      "nameLocation": "73:21:10",
+      "nodeType": "ContractDefinition",
+      "nodes":
+      [
+        {
+          "anonymous": false,
+          "id": 3281,
+          "name": "EmergencyWithdrawal",
+          "nameLocation": "105:19:10",
+          "nodeType": "EventDefinition",
+          "parameters":
+          {
+            "id": 3280,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 3273,
+                "indexed": true,
+                "mutability": "mutable",
+                "name": "caller",
+                "nameLocation": "146:6:10",
+                "nodeType": "VariableDeclaration",
+                "scope": 3281,
+                "src": "130:22:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 3272,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "130:7:10",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3275,
+                "indexed": true,
+                "mutability": "mutable",
+                "name": "token",
+                "nameLocation": "174:5:10",
+                "nodeType": "VariableDeclaration",
+                "scope": 3281,
+                "src": "158:21:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 3274,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "158:7:10",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3277,
+                "indexed": true,
+                "mutability": "mutable",
+                "name": "to",
+                "nameLocation": "201:2:10",
+                "nodeType": "VariableDeclaration",
+                "scope": 3281,
+                "src": "185:18:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 3276,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "185:7:10",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3279,
+                "indexed": false,
+                "mutability": "mutable",
+                "name": "amount",
+                "nameLocation": "217:6:10",
+                "nodeType": "VariableDeclaration",
+                "scope": 3281,
+                "src": "209:14:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName":
+                {
+                  "id": 3278,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "209:7:10",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "124:103:10"
+          },
+          "src": "99:129:10"
+        },
+        {
+          "documentation":
+          {
+            "id": 3282,
+            "nodeType": "StructuredDocumentation",
+            "src": "232:341:10",
+            "text": " @dev Perform custom transfer logic via delegate call from source contract to a TransferStrategy implementation\n @param to Account to transfer rewards\n @param reward Address of the reward token\n @param amount Amount to transfer to the \"to\" address parameter\n @return Returns true bool if transfer logic succeeds"
+          },
+          "functionSelector": "16beb982",
+          "id": 3293,
+          "implemented": false,
+          "kind": "function",
+          "modifiers": [],
+          "name": "performTransfer",
+          "nameLocation": "585:15:10",
+          "nodeType": "FunctionDefinition",
+          "parameters":
+          {
+            "id": 3289,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 3284,
+                "mutability": "mutable",
+                "name": "to",
+                "nameLocation": "614:2:10",
+                "nodeType": "VariableDeclaration",
+                "scope": 3293,
+                "src": "606:10:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 3283,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "606:7:10",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3286,
+                "mutability": "mutable",
+                "name": "reward",
+                "nameLocation": "630:6:10",
+                "nodeType": "VariableDeclaration",
+                "scope": 3293,
+                "src": "622:14:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 3285,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "622:7:10",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3288,
+                "mutability": "mutable",
+                "name": "amount",
+                "nameLocation": "650:6:10",
+                "nodeType": "VariableDeclaration",
+                "scope": 3293,
+                "src": "642:14:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName":
+                {
+                  "id": 3287,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "642:7:10",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "600:60:10"
+          },
+          "returnParameters":
+          {
+            "id": 3292,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 3291,
+                "mutability": "mutable",
+                "name": "",
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "VariableDeclaration",
+                "scope": 3293,
+                "src": "679:4:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName":
+                {
+                  "id": 3290,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "679:4:10",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "678:6:10"
+          },
+          "scope": 3316,
+          "src": "576:109:10",
+          "stateMutability": "nonpayable",
+          "virtual": false,
+          "visibility": "external"
+        },
+        {
+          "documentation":
+          {
+            "id": 3294,
+            "nodeType": "StructuredDocumentation",
+            "src": "689:71:10",
+            "text": " @return Returns the address of the Incentives Controller"
+          },
+          "functionSelector": "75d26413",
+          "id": 3299,
+          "implemented": false,
+          "kind": "function",
+          "modifiers": [],
+          "name": "getIncentivesController",
+          "nameLocation": "772:23:10",
+          "nodeType": "FunctionDefinition",
+          "parameters":
+          {
+            "id": 3295,
+            "nodeType": "ParameterList",
+            "parameters": [],
+            "src": "795:2:10"
+          },
+          "returnParameters":
+          {
+            "id": 3298,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 3297,
+                "mutability": "mutable",
+                "name": "",
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "VariableDeclaration",
+                "scope": 3299,
+                "src": "821:7:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 3296,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "821:7:10",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "820:9:10"
+          },
+          "scope": 3316,
+          "src": "763:67:10",
+          "stateMutability": "view",
+          "virtual": false,
+          "visibility": "external"
+        },
+        {
+          "documentation":
+          {
+            "id": 3300,
+            "nodeType": "StructuredDocumentation",
+            "src": "834:63:10",
+            "text": " @return Returns the address of the Rewards admin"
+          },
+          "functionSelector": "c6255443",
+          "id": 3305,
+          "implemented": false,
+          "kind": "function",
+          "modifiers": [],
+          "name": "getRewardsAdmin",
+          "nameLocation": "909:15:10",
+          "nodeType": "FunctionDefinition",
+          "parameters":
+          {
+            "id": 3301,
+            "nodeType": "ParameterList",
+            "parameters": [],
+            "src": "924:2:10"
+          },
+          "returnParameters":
+          {
+            "id": 3304,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 3303,
+                "mutability": "mutable",
+                "name": "",
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "VariableDeclaration",
+                "scope": 3305,
+                "src": "950:7:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 3302,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "950:7:10",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "949:9:10"
+          },
+          "scope": 3316,
+          "src": "900:59:10",
+          "stateMutability": "view",
+          "virtual": false,
+          "visibility": "external"
+        },
+        {
+          "documentation":
+          {
+            "id": 3306,
+            "nodeType": "StructuredDocumentation",
+            "src": "963:270:10",
+            "text": " @dev Perform an emergency token withdrawal only callable by the Rewards admin\n @param token Address of the token to withdraw funds from this contract\n @param to Address of the recipient of the withdrawal\n @param amount Amount of the withdrawal"
+          },
+          "functionSelector": "8d8e5da7",
+          "id": 3315,
+          "implemented": false,
+          "kind": "function",
+          "modifiers": [],
+          "name": "emergencyWithdrawal",
+          "nameLocation": "1245:19:10",
+          "nodeType": "FunctionDefinition",
+          "parameters":
+          {
+            "id": 3313,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 3308,
+                "mutability": "mutable",
+                "name": "token",
+                "nameLocation": "1278:5:10",
+                "nodeType": "VariableDeclaration",
+                "scope": 3315,
+                "src": "1270:13:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 3307,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1270:7:10",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3310,
+                "mutability": "mutable",
+                "name": "to",
+                "nameLocation": "1297:2:10",
+                "nodeType": "VariableDeclaration",
+                "scope": 3315,
+                "src": "1289:10:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 3309,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1289:7:10",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3312,
+                "mutability": "mutable",
+                "name": "amount",
+                "nameLocation": "1313:6:10",
+                "nodeType": "VariableDeclaration",
+                "scope": 3315,
+                "src": "1305:14:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName":
+                {
+                  "id": 3311,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1305:7:10",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "1264:59:10"
+          },
+          "returnParameters":
+          {
+            "id": 3314,
+            "nodeType": "ParameterList",
+            "parameters": [],
+            "src": "1332:0:10"
+          },
+          "scope": 3316,
+          "src": "1236:97:10",
+          "stateMutability": "nonpayable",
+          "virtual": false,
+          "visibility": "external"
+        }
+      ],
+      "scope": 3317,
+      "src": "63:1272:10",
+      "usedErrors": []
+    }
+  ],
+  "src": "37:1299:10"
+}

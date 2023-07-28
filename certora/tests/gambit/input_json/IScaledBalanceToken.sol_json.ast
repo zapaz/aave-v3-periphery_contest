@@ -1,0 +1,821 @@
+{
+  "absolutePath": "/Users/alain/DEV/aave-v3-periphery_contest/node_modules/@aave/core-v3/contracts/interfaces/IScaledBalanceToken.sol",
+  "exportedSymbols":
+  {
+    "IScaledBalanceToken":
+    [
+      1483
+    ]
+  },
+  "id": 1484,
+  "license": "AGPL-3.0",
+  "nodeType": "SourceUnit",
+  "nodes":
+  [
+    {
+      "id": 1423,
+      "literals":
+      [
+        "solidity",
+        "^",
+        "0.8",
+        ".0"
+      ],
+      "nodeType": "PragmaDirective",
+      "src": "37:23:3"
+    },
+    {
+      "abstract": false,
+      "baseContracts": [],
+      "canonicalName": "IScaledBalanceToken",
+      "contractDependencies": [],
+      "contractKind": "interface",
+      "documentation":
+      {
+        "id": 1424,
+        "nodeType": "StructuredDocumentation",
+        "src": "62:120:3",
+        "text": " @title IScaledBalanceToken\n @author Aave\n @notice Defines the basic interface for a scaled-balance token."
+      },
+      "fullyImplemented": false,
+      "id": 1483,
+      "linearizedBaseContracts":
+      [
+        1483
+      ],
+      "name": "IScaledBalanceToken",
+      "nameLocation": "193:19:3",
+      "nodeType": "ContractDefinition",
+      "nodes":
+      [
+        {
+          "anonymous": false,
+          "documentation":
+          {
+            "id": 1425,
+            "nodeType": "StructuredDocumentation",
+            "src": "217:459:3",
+            "text": " @dev Emitted after the mint action\n @param caller The address performing the mint\n @param onBehalfOf The address of the user that will receive the minted tokens\n @param value The scaled-up amount being minted (based on user entered amount and balance increase from interest)\n @param balanceIncrease The increase in scaled-up balance since the last action of 'onBehalfOf'\n @param index The next liquidity index of the reserve"
+          },
+          "id": 1437,
+          "name": "Mint",
+          "nameLocation": "685:4:3",
+          "nodeType": "EventDefinition",
+          "parameters":
+          {
+            "id": 1436,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 1427,
+                "indexed": true,
+                "mutability": "mutable",
+                "name": "caller",
+                "nameLocation": "711:6:3",
+                "nodeType": "VariableDeclaration",
+                "scope": 1437,
+                "src": "695:22:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 1426,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "695:7:3",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1429,
+                "indexed": true,
+                "mutability": "mutable",
+                "name": "onBehalfOf",
+                "nameLocation": "739:10:3",
+                "nodeType": "VariableDeclaration",
+                "scope": 1437,
+                "src": "723:26:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 1428,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "723:7:3",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1431,
+                "indexed": false,
+                "mutability": "mutable",
+                "name": "value",
+                "nameLocation": "763:5:3",
+                "nodeType": "VariableDeclaration",
+                "scope": 1437,
+                "src": "755:13:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName":
+                {
+                  "id": 1430,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "755:7:3",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1433,
+                "indexed": false,
+                "mutability": "mutable",
+                "name": "balanceIncrease",
+                "nameLocation": "782:15:3",
+                "nodeType": "VariableDeclaration",
+                "scope": 1437,
+                "src": "774:23:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName":
+                {
+                  "id": 1432,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "774:7:3",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1435,
+                "indexed": false,
+                "mutability": "mutable",
+                "name": "index",
+                "nameLocation": "811:5:3",
+                "nodeType": "VariableDeclaration",
+                "scope": 1437,
+                "src": "803:13:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName":
+                {
+                  "id": 1434,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "803:7:3",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "689:131:3"
+          },
+          "src": "679:142:3"
+        },
+        {
+          "anonymous": false,
+          "documentation":
+          {
+            "id": 1438,
+            "nodeType": "StructuredDocumentation",
+            "src": "825:566:3",
+            "text": " @dev Emitted after the burn action\n @dev If the burn function does not involve a transfer of the underlying asset, the target defaults to zero address\n @param from The address from which the tokens will be burned\n @param target The address that will receive the underlying, if any\n @param value The scaled-up amount being burned (user entered amount - balance increase from interest)\n @param balanceIncrease The increase in scaled-up balance since the last action of 'from'\n @param index The next liquidity index of the reserve"
+          },
+          "id": 1450,
+          "name": "Burn",
+          "nameLocation": "1400:4:3",
+          "nodeType": "EventDefinition",
+          "parameters":
+          {
+            "id": 1449,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 1440,
+                "indexed": true,
+                "mutability": "mutable",
+                "name": "from",
+                "nameLocation": "1426:4:3",
+                "nodeType": "VariableDeclaration",
+                "scope": 1450,
+                "src": "1410:20:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 1439,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1410:7:3",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1442,
+                "indexed": true,
+                "mutability": "mutable",
+                "name": "target",
+                "nameLocation": "1452:6:3",
+                "nodeType": "VariableDeclaration",
+                "scope": 1450,
+                "src": "1436:22:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 1441,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1436:7:3",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1444,
+                "indexed": false,
+                "mutability": "mutable",
+                "name": "value",
+                "nameLocation": "1472:5:3",
+                "nodeType": "VariableDeclaration",
+                "scope": 1450,
+                "src": "1464:13:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName":
+                {
+                  "id": 1443,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1464:7:3",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1446,
+                "indexed": false,
+                "mutability": "mutable",
+                "name": "balanceIncrease",
+                "nameLocation": "1491:15:3",
+                "nodeType": "VariableDeclaration",
+                "scope": 1450,
+                "src": "1483:23:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName":
+                {
+                  "id": 1445,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1483:7:3",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1448,
+                "indexed": false,
+                "mutability": "mutable",
+                "name": "index",
+                "nameLocation": "1520:5:3",
+                "nodeType": "VariableDeclaration",
+                "scope": 1450,
+                "src": "1512:13:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName":
+                {
+                  "id": 1447,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1512:7:3",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "1404:125:3"
+          },
+          "src": "1394:136:3"
+        },
+        {
+          "documentation":
+          {
+            "id": 1451,
+            "nodeType": "StructuredDocumentation",
+            "src": "1534:308:3",
+            "text": " @notice Returns the scaled balance of the user.\n @dev The scaled balance is the sum of all the updated stored balance divided by the reserve's liquidity index\n at the moment of the update\n @param user The user whose balance is calculated\n @return The scaled balance of the user"
+          },
+          "functionSelector": "1da24f3e",
+          "id": 1458,
+          "implemented": false,
+          "kind": "function",
+          "modifiers": [],
+          "name": "scaledBalanceOf",
+          "nameLocation": "1854:15:3",
+          "nodeType": "FunctionDefinition",
+          "parameters":
+          {
+            "id": 1454,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 1453,
+                "mutability": "mutable",
+                "name": "user",
+                "nameLocation": "1878:4:3",
+                "nodeType": "VariableDeclaration",
+                "scope": 1458,
+                "src": "1870:12:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 1452,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1870:7:3",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "1869:14:3"
+          },
+          "returnParameters":
+          {
+            "id": 1457,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 1456,
+                "mutability": "mutable",
+                "name": "",
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "VariableDeclaration",
+                "scope": 1458,
+                "src": "1907:7:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName":
+                {
+                  "id": 1455,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1907:7:3",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "1906:9:3"
+          },
+          "scope": 1483,
+          "src": "1845:71:3",
+          "stateMutability": "view",
+          "virtual": false,
+          "visibility": "external"
+        },
+        {
+          "documentation":
+          {
+            "id": 1459,
+            "nodeType": "StructuredDocumentation",
+            "src": "1920:212:3",
+            "text": " @notice Returns the scaled balance of the user and the scaled total supply.\n @param user The address of the user\n @return The scaled balance of the user\n @return The scaled total supply"
+          },
+          "functionSelector": "0afbcdc9",
+          "id": 1468,
+          "implemented": false,
+          "kind": "function",
+          "modifiers": [],
+          "name": "getScaledUserBalanceAndSupply",
+          "nameLocation": "2144:29:3",
+          "nodeType": "FunctionDefinition",
+          "parameters":
+          {
+            "id": 1462,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 1461,
+                "mutability": "mutable",
+                "name": "user",
+                "nameLocation": "2182:4:3",
+                "nodeType": "VariableDeclaration",
+                "scope": 1468,
+                "src": "2174:12:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 1460,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2174:7:3",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "2173:14:3"
+          },
+          "returnParameters":
+          {
+            "id": 1467,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 1464,
+                "mutability": "mutable",
+                "name": "",
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "VariableDeclaration",
+                "scope": 1468,
+                "src": "2211:7:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName":
+                {
+                  "id": 1463,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2211:7:3",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1466,
+                "mutability": "mutable",
+                "name": "",
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "VariableDeclaration",
+                "scope": 1468,
+                "src": "2220:7:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName":
+                {
+                  "id": 1465,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2220:7:3",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "2210:18:3"
+          },
+          "scope": 1483,
+          "src": "2135:94:3",
+          "stateMutability": "view",
+          "virtual": false,
+          "visibility": "external"
+        },
+        {
+          "documentation":
+          {
+            "id": 1469,
+            "nodeType": "StructuredDocumentation",
+            "src": "2233:147:3",
+            "text": " @notice Returns the scaled total supply of the scaled balance token. Represents sum(debt/index)\n @return The scaled total supply"
+          },
+          "functionSelector": "b1bf962d",
+          "id": 1474,
+          "implemented": false,
+          "kind": "function",
+          "modifiers": [],
+          "name": "scaledTotalSupply",
+          "nameLocation": "2392:17:3",
+          "nodeType": "FunctionDefinition",
+          "parameters":
+          {
+            "id": 1470,
+            "nodeType": "ParameterList",
+            "parameters": [],
+            "src": "2409:2:3"
+          },
+          "returnParameters":
+          {
+            "id": 1473,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 1472,
+                "mutability": "mutable",
+                "name": "",
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "VariableDeclaration",
+                "scope": 1474,
+                "src": "2435:7:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName":
+                {
+                  "id": 1471,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2435:7:3",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "2434:9:3"
+          },
+          "scope": 1483,
+          "src": "2383:61:3",
+          "stateMutability": "view",
+          "virtual": false,
+          "visibility": "external"
+        },
+        {
+          "documentation":
+          {
+            "id": 1475,
+            "nodeType": "StructuredDocumentation",
+            "src": "2448:214:3",
+            "text": " @notice Returns last index interest was accrued to the user's balance\n @param user The address of the user\n @return The last index interest was accrued to the user's balance, expressed in ray"
+          },
+          "functionSelector": "e0753986",
+          "id": 1482,
+          "implemented": false,
+          "kind": "function",
+          "modifiers": [],
+          "name": "getPreviousIndex",
+          "nameLocation": "2674:16:3",
+          "nodeType": "FunctionDefinition",
+          "parameters":
+          {
+            "id": 1478,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 1477,
+                "mutability": "mutable",
+                "name": "user",
+                "nameLocation": "2699:4:3",
+                "nodeType": "VariableDeclaration",
+                "scope": 1482,
+                "src": "2691:12:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName":
+                {
+                  "id": 1476,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2691:7:3",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "2690:14:3"
+          },
+          "returnParameters":
+          {
+            "id": 1481,
+            "nodeType": "ParameterList",
+            "parameters":
+            [
+              {
+                "constant": false,
+                "id": 1480,
+                "mutability": "mutable",
+                "name": "",
+                "nameLocation": "-1:-1:-1",
+                "nodeType": "VariableDeclaration",
+                "scope": 1482,
+                "src": "2728:7:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions":
+                {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName":
+                {
+                  "id": 1479,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2728:7:3",
+                  "typeDescriptions":
+                  {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "src": "2727:9:3"
+          },
+          "scope": 1483,
+          "src": "2665:72:3",
+          "stateMutability": "view",
+          "virtual": false,
+          "visibility": "external"
+        }
+      ],
+      "scope": 1484,
+      "src": "183:2556:3",
+      "usedErrors": []
+    }
+  ],
+  "src": "37:2703:3"
+}
