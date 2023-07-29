@@ -78,8 +78,7 @@ contract RewardsController is RewardsDistributor, VersionedInitializable, IRewar
     override
     onlyEmissionManager
   {
-    /// SwapArgumentsOperatorMutation(`i < config.length` |==> `config.length < i`) of: `for (uint256 i = 0; i < config.length; i++) {`
-    for (uint256 i = 0; config.length < i; i++) {
+    for (uint256 i = 0; i < config.length; i++) {
       // Get the current Scaled Total Supply of AToken or Debt token
       config[i].totalSupply = IScaledBalanceToken(config[i].asset).scaledTotalSupply();
 
@@ -347,7 +346,8 @@ contract RewardsController is RewardsDistributor, VersionedInitializable, IRewar
   function _installTransferStrategy(address reward, ITransferStrategyBase transferStrategy)
     internal
   {
-    require(address(transferStrategy) != address(0), 'STRATEGY_CAN_NOT_BE_ZERO');
+    /// RequireMutation(`address(transferStrategy) != address(0)` |==> `false`) of: `require(address(transferStrategy) != address(0), 'STRATEGY_CAN_NOT_BE_ZERO');`
+    require(false, 'STRATEGY_CAN_NOT_BE_ZERO');
     require(_isContract(address(transferStrategy)) == true, 'STRATEGY_MUST_BE_CONTRACT');
 
     _transferStrategy[reward] = transferStrategy;

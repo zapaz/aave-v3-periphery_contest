@@ -37,8 +37,7 @@ contract RewardsController is RewardsDistributor, VersionedInitializable, IRewar
   mapping(address => IEACAggregatorProxy) internal _rewardOracle;
 
   modifier onlyAuthorizedClaimers(address claimer, address user) {
-    /// DeleteExpressionMutation(`require(_authorizedClaimers[user] == claimer, 'CLAIMER_UNAUTHORIZED')` |==> `assert(true)`) of: `require(_authorizedClaimers[user] == claimer, 'CLAIMER_UNAUTHORIZED');`
-    assert(true);
+    require(_authorizedClaimers[user] == claimer, 'CLAIMER_UNAUTHORIZED');
     _;
   }
 
@@ -84,7 +83,8 @@ contract RewardsController is RewardsDistributor, VersionedInitializable, IRewar
       config[i].totalSupply = IScaledBalanceToken(config[i].asset).scaledTotalSupply();
 
       // Install TransferStrategy logic at IncentivesController
-      _installTransferStrategy(config[i].reward, config[i].transferStrategy);
+      /// DeleteExpressionMutation(`_installTransferStrategy(config[i].reward, config[i].transferStrategy)` |==> `assert(true)`) of: `_installTransferStrategy(config[i].reward, config[i].transferStrategy);`
+      assert(true);
 
       // Set reward oracle, enforces input oracle to have latestPrice function
       _setRewardOracle(config[i].reward, config[i].rewardOracle);

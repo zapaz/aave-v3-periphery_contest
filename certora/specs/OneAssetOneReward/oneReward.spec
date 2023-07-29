@@ -2,7 +2,7 @@
 rule oneRewardByAssetIsInList(method f, env e, calldataarg arg) {
   require oneAssetOneReward(AToken, Reward);
 
-  f(e,arg);
+  f@withrevert(e,arg);
 
   address[] rewardsByAsset_ = getRewardsByAsset(AToken);
   address[] rewardsList_ = getRewardsList();

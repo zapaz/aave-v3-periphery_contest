@@ -7,7 +7,7 @@ import "methods/Methods_base.spec";
         uint256 _index = getAssetRewardIndex(asset, reward);
 
         env e; calldataarg args;
-        f(e, args);
+        f@withrevert(e, args);
 
         uint256 index_ = getAssetRewardIndex(asset, reward);
 
@@ -46,7 +46,7 @@ import "methods/Methods_base.spec";
 
         env e;
         calldataarg args;
-        f(e,args);
+        f@withrevert(e,args);
 
         uint256 after = getUserAccruedRewards(user, reward);
 

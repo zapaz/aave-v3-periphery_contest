@@ -15,7 +15,7 @@
 rule rewardsByAssetAreInList(method f, env e, calldataarg arg) {
   require oneAssetMultiRewards(AToken, Reward, RewardB);
 
-  f(e,arg);
+  f@withrevert(e,arg);
 
   address[] rewardsByAsset_ = getRewardsByAsset(AToken);
   address[] rewardsList_ = getRewardsList();

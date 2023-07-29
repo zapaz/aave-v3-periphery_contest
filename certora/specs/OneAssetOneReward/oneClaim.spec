@@ -123,3 +123,14 @@ rule oneClaimRewardsToSelfAsExpected(env e, address user) {
     assert amount_ == min( _amount, amount );
 }
 
+rule oneClaimUserRewards(env e, address user){
+    require oneAssetOneReward(AToken, Reward);
+
+    uint256 _claimable = getUserRewards(e, getAssetsList(), user, Reward);
+
+    address[] rewards; uint256[] amounts;
+    rewards, amounts = getAllUserRewards(e, getAssetsList(), user);
+    uint256 claimable_ = amounts[0];
+
+    assert claimable_ == _claimable;
+}
