@@ -1,6 +1,16 @@
-{
+[
+  {
     "filename": "contracts/rewards/RewardsController.sol",
+    "skip_validate": false,
     "solc_remappings": [
-        "@aave=node_modules/@aave"
+      "@aave=node_modules/@aave"
     ]
-}
+  },
+  {
+    "filename": "contracts/rewards/RewardsDistributor.sol",
+    "skip_validate": false,
+    "solc_remappings": [
+      "@aave=node_modules/@aave"
+    ]
+  }
+]

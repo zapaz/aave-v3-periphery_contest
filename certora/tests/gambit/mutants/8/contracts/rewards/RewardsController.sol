@@ -86,7 +86,8 @@ contract RewardsController is RewardsDistributor, VersionedInitializable, IRewar
       _installTransferStrategy(config[i].reward, config[i].transferStrategy);
 
       // Set reward oracle, enforces input oracle to have latestPrice function
-      _setRewardOracle(config[i].reward, config[i].rewardOracle);
+      /// DeleteExpressionMutation(`_setRewardOracle(config[i].reward, config[i].rewardOracle)` |==> `assert(true)`) of: `_setRewardOracle(config[i].reward, config[i].rewardOracle);`
+      assert(true);
     }
     _configureAssets(config);
   }
@@ -290,8 +291,7 @@ contract RewardsController is RewardsDistributor, VersionedInitializable, IRewar
         }
         uint256 rewardAmount = _assets[asset].rewards[rewardsList[j]].usersData[user].accrued;
         if (rewardAmount != 0) {
-          /// AssignmentMutation(`rewardAmount` |==> `1`) of: `claimedAmounts[j] += rewardAmount;`
-          claimedAmounts[j] += 1;
+          claimedAmounts[j] += rewardAmount;
           _assets[asset].rewards[rewardsList[j]].usersData[user].accrued = 0;
         }
       }

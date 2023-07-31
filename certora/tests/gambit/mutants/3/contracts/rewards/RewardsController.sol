@@ -37,7 +37,8 @@ contract RewardsController is RewardsDistributor, VersionedInitializable, IRewar
   mapping(address => IEACAggregatorProxy) internal _rewardOracle;
 
   modifier onlyAuthorizedClaimers(address claimer, address user) {
-    require(_authorizedClaimers[user] == claimer, 'CLAIMER_UNAUTHORIZED');
+    /// RequireMutation(`_authorizedClaimers[user] == claimer` |==> `false`) of: `require(_authorizedClaimers[user] == claimer, 'CLAIMER_UNAUTHORIZED');`
+    require(false, 'CLAIMER_UNAUTHORIZED');
     _;
   }
 
@@ -243,8 +244,7 @@ contract RewardsController is RewardsDistributor, VersionedInitializable, IRewar
       if (totalRewards <= amount) {
         _assets[asset].rewards[reward].usersData[user].accrued = 0;
       } else {
-        /// BinaryOpMutation(`-` |==> `/`) of: `uint256 difference = totalRewards - amount;`
-        uint256 difference = totalRewards/amount;
+        uint256 difference = totalRewards - amount;
         totalRewards -= difference;
         _assets[asset].rewards[reward].usersData[user].accrued = difference.toUint128();
         break;

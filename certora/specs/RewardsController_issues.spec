@@ -1,9 +1,9 @@
-import "methods/Methods_base.spec";
+import "methods/Methods_base.m.spec";
 
 ///////////////// Properties ///////////////////////
 
 // Certora prover bug, NOT a RewardController bug !
-// Should not be able to set rewardOracle to 0 (if already initialized)
+// Should not be able to set rewardOracle to 0
 rule cannotSetRewardOracleWithoutPrice(method f, env e, calldataarg args) filtered {
    f -> !f.isView
 }{

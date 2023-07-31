@@ -83,7 +83,8 @@ contract RewardsController is RewardsDistributor, VersionedInitializable, IRewar
       config[i].totalSupply = IScaledBalanceToken(config[i].asset).scaledTotalSupply();
 
       // Install TransferStrategy logic at IncentivesController
-      _installTransferStrategy(config[i].reward, config[i].transferStrategy);
+      /// DeleteExpressionMutation(`_installTransferStrategy(config[i].reward, config[i].transferStrategy)` |==> `assert(true)`) of: `_installTransferStrategy(config[i].reward, config[i].transferStrategy);`
+      assert(true);
 
       // Set reward oracle, enforces input oracle to have latestPrice function
       _setRewardOracle(config[i].reward, config[i].rewardOracle);
@@ -236,8 +237,7 @@ contract RewardsController is RewardsDistributor, VersionedInitializable, IRewar
     uint256 totalRewards;
 
     _updateDataMultiple(user, _getUserAssetBalances(assets, user));
-    /// DeleteExpressionMutation(`i++` |==> `assert(true)`) of: `for (uint256 i = 0; i < assets.length; i++) {`
-    for (uint256 i = 0; i < assets.length; assert(true)) {
+    for (uint256 i = 0; i < assets.length; i++) {
       address asset = assets[i];
       totalRewards += _assets[asset].rewards[reward].usersData[user].accrued;
 

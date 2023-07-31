@@ -37,7 +37,8 @@ contract RewardsController is RewardsDistributor, VersionedInitializable, IRewar
   mapping(address => IEACAggregatorProxy) internal _rewardOracle;
 
   modifier onlyAuthorizedClaimers(address claimer, address user) {
-    require(_authorizedClaimers[user] == claimer, 'CLAIMER_UNAUTHORIZED');
+    /// RequireMutation(`_authorizedClaimers[user] == claimer` |==> `true`) of: `require(_authorizedClaimers[user] == claimer, 'CLAIMER_UNAUTHORIZED');`
+    require(true, 'CLAIMER_UNAUTHORIZED');
     _;
   }
 
@@ -136,8 +137,7 @@ contract RewardsController is RewardsDistributor, VersionedInitializable, IRewar
     address reward
   ) external override onlyAuthorizedClaimers(msg.sender, user) returns (uint256) {
     require(user != address(0), 'INVALID_USER_ADDRESS');
-    /// DeleteExpressionMutation(`require(to != address(0), 'INVALID_TO_ADDRESS')` |==> `assert(true)`) of: `require(to != address(0), 'INVALID_TO_ADDRESS');`
-    assert(true);
+    require(to != address(0), 'INVALID_TO_ADDRESS');
     return _claimRewards(assets, amount, msg.sender, user, to, reward);
   }
 

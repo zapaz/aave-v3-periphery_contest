@@ -80,7 +80,8 @@ contract RewardsController is RewardsDistributor, VersionedInitializable, IRewar
   {
     for (uint256 i = 0; i < config.length; i++) {
       // Get the current Scaled Total Supply of AToken or Debt token
-      config[i].totalSupply = IScaledBalanceToken(config[i].asset).scaledTotalSupply();
+      /// AssignmentMutation(`IScaledBalanceToken(config[i].asset).scaledTotalSupply()` |==> `0`) of: `config[i].totalSupply = IScaledBalanceToken(config[i].asset).scaledTotalSupply();`
+      config[i].totalSupply = 0;
 
       // Install TransferStrategy logic at IncentivesController
       _installTransferStrategy(config[i].reward, config[i].transferStrategy);
@@ -245,8 +246,7 @@ contract RewardsController is RewardsDistributor, VersionedInitializable, IRewar
       } else {
         uint256 difference = totalRewards - amount;
         totalRewards -= difference;
-        /// AssignmentMutation(`difference.toUint128()` |==> `1`) of: `_assets[asset].rewards[reward].usersData[user].accrued = difference.toUint128();`
-        _assets[asset].rewards[reward].usersData[user].accrued = 1;
+        _assets[asset].rewards[reward].usersData[user].accrued = difference.toUint128();
         break;
       }
     }
