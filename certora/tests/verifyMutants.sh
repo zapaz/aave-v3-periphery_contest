@@ -16,7 +16,7 @@ do
 
       cp $m/contracts/rewards/RewardsController.sol $CONTRACT
 
-      for conf in certora/conf/oneReward_verified.conf
+      for conf in certora/conf/RewardsController*_verified.conf
       do
           MSG="MUTANT `basename $m` with `basename $conf`"
           echo Verifying $MSG
@@ -27,4 +27,4 @@ do
 done
 
 cp /tmp/RewardsController.sol $CONTRACT
-
+pip

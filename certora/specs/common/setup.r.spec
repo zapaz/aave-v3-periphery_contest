@@ -1,4 +1,35 @@
-rule setupAssetsAdded(method f, env e, calldataarg args) filtered { f -> !f.isView } {
+rule setupConfig(env e, calldataarg args) {
+    address[] _assets = getAssetsList();
+
+    require EMISSION_MANAGER() == currentContract;   // must be emmission manager to call external function harnessed
+    require getlastUpdateTimestamp(AToken,Reward) == 0;
+    require getAvailableRewardsCount(AToken) == 0;
+    require getAssetDecimals(AToken) == 0;
+    require AToken.decimals(e) > 0;
+    require _assets.length == 0;
+    require isRewardEnabled(Reward) == false;
+
+    configureAsset(AToken, Reward, TransferStrategy);
+
+    address[] assets_ = getAssetsList();
+    address asset_     = assets_[0];
+    address[] rewards_ = getRewardsByAsset(asset_);
+    address reward_    = rewards_[0];
+
+    assert getTransferStrategy(Reward) == TransferStrategy;
+    assert getRewardOracle(Reward) == rewardOracle();
+    assert assets_.length == 1;
+    assert rewards_.length == 1;
+    assert asset_ == AToken;
+    assert reward_ == Reward;
+    assert getAvailableRewardsCount(AToken) == 1;
+    assert getAssetDecimals(AToken) == AToken.decimals(e);
+    assert isRewardEnabled(Reward) == true;
+}
+
+rule setupAssetsAdded(method f, env e, calldataarg args) filtered {
+   f -> !f.isView && !harnessFunction(f)
+} {
     address[] _assets = getAssetsList();
     uint256 _assetsLength = _assets.length;
 
@@ -12,7 +43,9 @@ rule setupAssetsAdded(method f, env e, calldataarg args) filtered { f -> !f.isVi
       &&   ( f.selector == sig:configureAssets(RewardsDataTypes.RewardsConfigInput[]).selector );
 }
 
-rule setupRewardModified(method f, env e, calldataarg args, address asset, address reward) filtered { f -> !f.isView } {
+rule setupRewardModified(method f, env e, calldataarg args, address asset, address reward) filtered {
+   f -> !f.isView && !harnessFunction(f)
+} {
     address[] _assets = getAssetsList();
 
     uint256 _index; uint256 _emissionPerSecond; uint256 _lastUpdateTimestamp; uint256 _distributionEnd;
@@ -35,7 +68,7 @@ rule setupRewardModified(method f, env e, calldataarg args, address asset, addre
 }
 
 rule setupTransferStrategy(method f, env e, calldataarg args, address reward) filtered {
-   f -> !f.isView
+   f -> !f.isView && !harnessFunction(f)
 }{
     address _transferStrategy = getTransferStrategy(reward);
     f(e, args);
@@ -48,13 +81,13 @@ rule setupTransferStrategy(method f, env e, calldataarg args, address reward) fi
 }
 
 rule setupRewardOracle(method f, env e, calldataarg args, address reward) filtered {
-   f -> !f.isView
+   f -> !f.isView && !harnessFunction(f)
 }{
-    address _transferStrategy = getRewardOracle(reward);
+    address _rewardOracle = getRewardOracle(reward);
     f(e, args);
-    address transferStrategy_ = getRewardOracle(reward);
+    address rewardOracle_ = getRewardOracle(reward);
 
-    assert transferStrategy_ != _transferStrategy
+    assert rewardOracle_ != _rewardOracle
       =>   ( e.msg.sender == EMISSION_MANAGER() )
       &&   ( ( f.selector == sig:configureAssets(RewardsDataTypes.RewardsConfigInput[]).selector )
       ||     ( f.selector == sig:setRewardOracle(address,address).selector                       ) );

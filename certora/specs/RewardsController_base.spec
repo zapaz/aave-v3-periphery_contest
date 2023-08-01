@@ -1,4 +1,4 @@
-import "methods/Methods_base.m.spec";
+import "methods/Methods_base.spec";
 
 ///////////////// Properties ///////////////////////
 

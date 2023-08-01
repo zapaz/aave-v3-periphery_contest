@@ -1,6 +1,5 @@
-
-rule oneRewardByAssetIsInList(method f, env e, calldataarg arg) {
-  require oneAssetOneReward(AToken, Reward);
+rule rewardsMultiByAssetAreInList(method f, env e, calldataarg arg) {
+  require rewardsMultiAssetOne(AToken, Reward, RewardB);
 
   f@withrevert(e,arg);
 
@@ -8,5 +7,5 @@ rule oneRewardByAssetIsInList(method f, env e, calldataarg arg) {
   address[] rewardsList_ = getRewardsList();
 
   assert rewardsByAsset_[0] == rewardsList_[0];
+  assert rewardsByAsset_[1] == rewardsList_[1];
 }
-

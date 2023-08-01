@@ -1,6 +1,6 @@
 
-rule oneClaimAllRewardsAsExpected(env e, address user, address to) {
-    require oneAssetOneReward(AToken, Reward);
+rule rewardOneClaimAllRewardsAsExpected(env e, address user, address to) {
+    require rewardsOneAssetOne(AToken, Reward);
     require e.msg.sender == user;
     require getTransferStrategy(Reward) != to;
 
@@ -21,8 +21,8 @@ rule oneClaimAllRewardsAsExpected(env e, address user, address to) {
     assert amounts_[0] == _amount;
 }
 
-rule oneClaimAllRewardsToSelfAsExpected(env e, address user) {
-    require oneAssetOneReward(AToken, Reward);
+rule rewardOneClaimAllRewardsToSelfAsExpected(env e, address user) {
+    require rewardsOneAssetOne(AToken, Reward);
     require e.msg.sender == user;
     require getTransferStrategy(Reward) != user;
 
@@ -43,8 +43,8 @@ rule oneClaimAllRewardsToSelfAsExpected(env e, address user) {
     assert amounts_[0] == _amount;
 }
 
-rule oneClaimAllRewardsOnBehalfAsExpected(env e, address user, address to) {
-    require oneAssetOneReward(AToken, Reward);
+rule rewardOneClaimAllRewardsOnBehalfAsExpected(env e, address user, address to) {
+    require rewardsOneAssetOne(AToken, Reward);
     require e.msg.sender == getClaimer(user);
     require getTransferStrategy(Reward) != to;
 
@@ -65,8 +65,8 @@ rule oneClaimAllRewardsOnBehalfAsExpected(env e, address user, address to) {
     assert amounts_[0] == _amount;
 }
 
-rule oneClaimRewardsAsExpected(env e, address user, address to) {
-    require oneAssetOneReward(AToken, Reward);
+rule rewardOneClaimRewardsAsExpected(env e, address user, address to) {
+    require rewardsOneAssetOne(AToken, Reward);
     require e.msg.sender == user;
     require getTransferStrategy(Reward) != to;
 
@@ -84,8 +84,8 @@ rule oneClaimRewardsAsExpected(env e, address user, address to) {
     assert amount_ == min( _amount, amount );
 }
 
-rule oneClaimRewardsOnBehalfAsExpected(env e, address user, address to) {
-    require oneAssetOneReward(AToken, Reward);
+rule rewardOneClaimRewardsOnBehalfAsExpected(env e, address user, address to) {
+    require rewardsOneAssetOne(AToken, Reward);
     require e.msg.sender == getClaimer(user);
     require getTransferStrategy(Reward) != to;
 
@@ -102,8 +102,8 @@ rule oneClaimRewardsOnBehalfAsExpected(env e, address user, address to) {
     assert amount_ == min( _amount, amount );
 }
 
-rule oneClaimRewardsToSelfAsExpected(env e, address user) {
-    require oneAssetOneReward(AToken, Reward);
+rule rewardOneClaimRewardsToSelfAsExpected(env e, address user) {
+    require rewardsOneAssetOne(AToken, Reward);
     require e.msg.sender == user;
     require getTransferStrategy(Reward) != user;
 
@@ -121,8 +121,8 @@ rule oneClaimRewardsToSelfAsExpected(env e, address user) {
     assert amount_ == min( _amount, amount );
 }
 
-rule oneClaimUserRewards(env e, address user){
-    require oneAssetOneReward(AToken, Reward);
+rule rewardOneClaimUserRewards(env e, address user){
+    require rewardsOneAssetOne(AToken, Reward);
 
     uint256 _claimable = getUserRewards(e, getAssetsList(), user, Reward);
 

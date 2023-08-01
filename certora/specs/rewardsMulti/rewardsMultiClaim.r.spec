@@ -1,5 +1,5 @@
-rule multiClaimAllRewardsAsExpected(env e, address user, address to) {
-    require oneAssetMultiRewards(AToken, Reward, RewardB);
+rule rewardsMultiClaimAllRewardsAsExpected(env e, address user, address to) {
+    require rewardsMultiAssetOne(AToken, Reward, RewardB);
     require e.msg.sender == user;
 
     uint256 _amount = getUserRewards(e, getAssetsList(), user, Reward);
@@ -15,8 +15,8 @@ rule multiClaimAllRewardsAsExpected(env e, address user, address to) {
         && amounts_[1] == _amountB;
 }
 
-rule multiClaimAllRewardsToSelfAsExpected(env e, address user) {
-    require oneAssetMultiRewards(AToken, Reward, RewardB);
+rule rewardsMultiClaimAllRewardsToSelfAsExpected(env e, address user) {
+    require rewardsMultiAssetOne(AToken, Reward, RewardB);
     require e.msg.sender == user;
 
     uint256 _amount = getUserRewards(e, getAssetsList(), user, Reward);
@@ -32,8 +32,8 @@ rule multiClaimAllRewardsToSelfAsExpected(env e, address user) {
         && amounts_[1] == _amountB;
 }
 
-rule multiClaimAllRewardsOnBehalfAsExpected(env e, address user, address to) {
-    require oneAssetMultiRewards(AToken, Reward, RewardB);
+rule rewardsMultiClaimAllRewardsOnBehalfAsExpected(env e, address user, address to) {
+    require rewardsMultiAssetOne(AToken, Reward, RewardB);
     require e.msg.sender == getClaimer(user);
 
     uint256 _amount = getUserRewards(e, getAssetsList(), user, Reward);
@@ -49,8 +49,8 @@ rule multiClaimAllRewardsOnBehalfAsExpected(env e, address user, address to) {
         && amounts_[1] == _amountB;
 }
 
-// rule multiClaimRewardsAsExpected(env e, address user, address to) {
-//     require oneAssetMultiRewards(AToken, Reward, RewardB);
+// rule rewardsMultiClaimRewardsAsExpected(env e, address user, address to) {
+//     require rewardsMultiAssetOne(AToken, Reward, RewardB);
 //     require e.msg.sender == user;
 
 //     uint256 _amount = getUserRewards(e, getAssetsList(), user, Reward);
@@ -60,8 +60,8 @@ rule multiClaimAllRewardsOnBehalfAsExpected(env e, address user, address to) {
 //     assert amount_ == min( _amount, amount );
 // }
 
-// rule multiClaimRewardsOnBehalfAsExpected(env e, address user, address to) {
-//     require oneAssetMultiRewards(AToken, Reward, RewardB);
+// rule rewardsMultiClaimRewardsOnBehalfAsExpected(env e, address user, address to) {
+//     require rewardsMultiAssetOne(AToken, Reward, RewardB);
 //     require e.msg.sender == getClaimer(user);
 
 //     uint256 _amount = getUserRewards(e, getAssetsList(), user, Reward);
@@ -71,8 +71,8 @@ rule multiClaimAllRewardsOnBehalfAsExpected(env e, address user, address to) {
 //     assert amount_ == min( _amount, amount );
 // }
 
-// rule multiClaimRewardsToSelfAsExpected(env e, address user) {
-//     require oneAssetMultiRewards(AToken, Reward, RewardB);
+// rule rewardsMultiClaimRewardsToSelfAsExpected(env e, address user) {
+//     require rewardsMultiAssetOne(AToken, Reward, RewardB);
 //     require e.msg.sender == user;
 
 //     uint256 _amount = getUserRewards(e, getAssetsList(), user, Reward);
@@ -82,8 +82,8 @@ rule multiClaimAllRewardsOnBehalfAsExpected(env e, address user, address to) {
 //     assert amount_ == min( _amount, amount );
 // }
 
-// rule multiClaimUserRewards(env e, address user){
-//     require oneAssetMultiRewards(AToken, Reward, RewardB);
+// rule rewardsMultiClaimUserRewards(env e, address user){
+//     require rewardsMultiAssetOne(AToken, Reward, RewardB);
 
 //     uint256 _claimable = getUserRewards(e, getAssetsList(), user, Reward);
 

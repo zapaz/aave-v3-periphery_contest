@@ -22,8 +22,8 @@ function rewardCalculation(
 }
 
 
-rule oneClaimEqual(env e, address user) {
-    require oneAssetOneReward(AToken, Reward);
+rule rewardOneClaimEqual(env e, address user) {
+    require rewardsOneAssetOne(AToken, Reward);
 
     uint256 _claimable = getUserRewards(e, getAssetsList(), user, Reward);
 
