@@ -1,3 +1,21 @@
+rule rewardOneClaim(env e, address user, address to) {
+    require rewardsOneAssetOne(AToken, Reward);
+    require e.msg.sender == getClaimer(user);
+    require getTransferStrategy(Reward) != to;
+    address[] assets = getAssetsList();
+
+    uint256 amountOnce; uint256 amountTwice;
+
+    uint256 claimable = getUserRewards(e, assets, user, Reward);
+
+    uint256 claimedOnce = claimRewardsOnBehalf(e, assets, amountOnce, user, to, Reward);
+    uint256 claimedTwice = claimRewardsOnBehalf(e, assets, amountTwice, user, to, Reward);
+
+    assert assert_uint256(claimedOnce + claimedTwice) <= claimable;
+    assert ( amountOnce >= claimable ) => ( claimedOnce == claimable ) && ( claimedTwice == 0 );
+    assert ( amountOnce <  claimable ) => ( claimedOnce == amountOnce );
+
+}
 
 rule rewardOneClaimAllRewardsAsExpected(env e, address user, address to) {
     require rewardsOneAssetOne(AToken, Reward);
@@ -124,10 +142,12 @@ rule rewardOneClaimRewardsToSelfAsExpected(env e, address user) {
 rule rewardOneClaimUserRewards(env e, address user){
     require rewardsOneAssetOne(AToken, Reward);
 
-    uint256 _claimable = getUserRewards(e, getAssetsList(), user, Reward);
+    address[] assets;
+
+    uint256 _claimable = getUserRewards(e, assets, user, Reward);
 
     address[] rewards; uint256[] amounts;
-    rewards, amounts = getAllUserRewards(e, getAssetsList(), user);
+    rewards, amounts = getAllUserRewards(e, assets, user);
     uint256 claimable_ = amounts[0];
 
     assert claimable_ == _claimable;

@@ -1,4 +1,4 @@
-function rewardCalculation(
+function rewardCalculationCVL(
   uint32 currentTimestamp,
   uint32 lastUpdateTimestamp,
   uint88 emissionPerSecond,
@@ -23,7 +23,11 @@ function rewardCalculation(
 
 
 rule rewardOneClaimEqual(env e, address user) {
-    require rewardsOneAssetOne(AToken, Reward);
+    // require rewardsOneAssetOne(AToken, Reward);
+
+    address[] assets;
+    require assets.length == 1;
+    require assets[0] == AToken;
 
     uint256 _claimable = getUserRewards(e, getAssetsList(), user, Reward);
 
@@ -49,7 +53,7 @@ rule rewardOneClaimEqual(env e, address user) {
     require currentTimestamp < distributionEnd;
     require currentTimestamp > lastUpdateTimestamp;
 
-    uint256 claimable = rewardCalculation(currentTimestamp, lastUpdateTimestamp, emissionPerSecond,
+    uint256 claimable = rewardCalculation(e, currentTimestamp, lastUpdateTimestamp, emissionPerSecond,
                                            index, userIndex, userAccrued, userBalance , totalSupply, assetUnit);
 
 

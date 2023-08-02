@@ -19,6 +19,29 @@ contract RewardsControllerHarness is RewardsController {
         rewardOracle = address(new RewardOracleHarness());
     }
 
+    function rewardCalculation(
+        uint32 currentTimestamp,
+        uint32 lastUpdateTimestamp,
+        uint88 emissionPerSecond,
+        uint104 index,
+        uint104 userIndex,
+        uint128 userAccrued,
+        uint256 userBalance,
+        uint256 totalSupply,
+        uint256 assetUnit
+    ) external view returns (uint256) {
+        uint256 userPendingIndex = uint256(index - userIndex);
+        uint256 userPending = uint256(userBalance * userPendingIndex / assetUnit);
+
+        uint256 deltaTime = uint256(currentTimestamp - lastUpdateTimestamp);
+        uint256 deltaEmission = uint256(emissionPerSecond * deltaTime * assetUnit);
+        uint256 deltaIndex = uint256(deltaEmission / totalSupply);
+
+        uint256 claimable = uint256(userPending + userAccrued + userBalance * deltaIndex * assetUnit);
+
+        return claimable;
+    }
+
     function isRewardEnabled(address reward) external view returns (bool) {
         return _isRewardEnabled[reward];
     }
