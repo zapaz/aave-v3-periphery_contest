@@ -1,17 +1,56 @@
-rule setupAssetsAdded(method f, env e, calldataarg args) filtered {
+rule setupAssetImmutable(method f, env e, calldataarg args) filtered {
    f -> !f.isView && !harnessFunction(f)
 } {
-    address[] _assets = getAssetsList();
-    uint256 _assetsLength = _assets.length;
+    address[] _assetsList = getAssetsList();
+    uint256 _assetsListLength = _assetsList.length;
+    uint256 index;
+    require index < _assetsListLength;
+
+    address _asset = _assetsList[index];
 
     f@withrevert(e, args);
 
-    address[] assets_ = getAssetsList();
-    uint256 assetsLength_ = assets_.length;
+    address[] assetsList_ = getAssetsList();
+    uint256 assetsListLength_ = assetsList_.length;
+    address asset_ = assetsList_[index];
 
-    assert assetsLength_ != _assetsLength
+    assert asset_ == _asset;
+    assert assetsListLength_ >= _assetsListLength;
+}
+
+rule setupAssetsAdded(method f, env e, calldataarg args) filtered {
+   f -> !f.isView && !harnessFunction(f)
+} {
+    address[] _assetsList = getAssetsList();
+    uint256 _assetsListLength = _assetsList.length;
+
+    f@withrevert(e, args);
+
+    address[] assetsList_ = getAssetsList();
+    uint256 assetsListLength_ = assetsList_.length;
+
+    assert assetsListLength_ != _assetsListLength
       =>   ( e.msg.sender == EMISSION_MANAGER() )
       &&   ( f.selector == sig:configureAssets(RewardsDataTypes.RewardsConfigInput[]).selector );
+}
+
+rule setupAssetsImmutable(method f, env e, calldataarg args) filtered {
+   f -> !f.isView && !harnessFunction(f)
+} {
+    address[] _assetsList = getAssetsList();
+    uint256 _assetsListLength = _assetsList.length;
+    uint256 index;
+    require index < _assetsListLength;
+
+    address _asset = _assetsList[index];
+
+    f@withrevert(e, args);
+
+    address[] assetsList_ = getAssetsList();
+    uint256 assetsListLength_ = assetsList_.length;
+    address asset_ = assetsList_[index];
+
+    assert assetsListLength_ >= _assetsListLength;
 }
 
 rule setupRewardModified(method f, env e, calldataarg args, address asset, address reward) filtered {
