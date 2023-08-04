@@ -40,8 +40,19 @@ function rewardsMultiAssetOne(address asset, address reward1, address reward2) r
 }
 
 
+rule availableRewardsCountIncrease(method f, env e, calldataarg args, address asset)  filtered { f -> !f.isView } {
+    uint256 _availableRewardsCount = getAvailableRewardsCount(asset);
+    f@withrevert(e, args);
+    uint256 availableRewardsCount_ = getAvailableRewardsCount(asset);
 
+    assert availableRewardsCount_ >= _availableRewardsCount;
+}
 
+invariant indexIncreaseWithSomeAvailableReward(address asset, address reward)
+    getAssetIndex(asset, reward) > 0 => getAvailableRewardsCount(asset) > 0;
+
+invariant userIndexIncreaseWithSomeAvailableReward(address user, address asset, address reward)
+    getUserAssetIndex(user, asset, reward) > 0 => getAvailableRewardsCount(asset) > 0;
 
 
 

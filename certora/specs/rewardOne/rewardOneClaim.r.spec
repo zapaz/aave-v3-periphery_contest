@@ -1,8 +1,7 @@
 rule rewardOneClaim(env e, address user, address to) {
     require rewardsOneAssetOne(AToken, Reward);
-    require e.msg.sender == getClaimer(user);
-    require getTransferStrategy(Reward) != to;
-    address[] assets = getAssetsList();
+    // requireInvariant userIndexIncreaseWithSomeAvailableReward(useAToken,Reward);
+    address[] assets;
 
     uint256 amountOnce; uint256 amountTwice;
 

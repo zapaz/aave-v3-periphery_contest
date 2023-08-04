@@ -13,6 +13,9 @@ import "./rewardsMulti/rewardsMulti.r.spec";
 
 using DummyERC20_rewardTokenB as RewardB;
 
+use invariant indexIncreaseWithSomeAvailableReward;
+use invariant userIndexIncreaseWithSomeAvailableReward;
+
 // COMMON (IN MULTI AND ONE)
 use invariant user_index_LEQ_index;
 
@@ -33,6 +36,9 @@ use rule claimRewardsOnBehalfReverts;
 use rule claimAllRewardsReverts;
 use rule claimAllRewardsOnBehalfReverts;
 
+/// testing
+use rule availableRewardsCountIncrease;
+
 ///////////////// Properties ///////////////////////
 
 use rule rewardsMultiByAssetAreInList;
@@ -47,8 +53,7 @@ use rule rewardsMultiClaimAllRewardsAsExpected;
 use rule rewardsMultiClaimAllRewardsToSelfAsExpected;
 use rule rewardsMultiClaimAllRewardsOnBehalfAsExpected;
 
-
-// use rule rewardsMultiClaimRewardsAsExpected;
-// use rule rewardsMultiClaimRewardsOnBehalfAsExpected;
-// use rule rewardsMultiClaimRewardsToSelfAsExpected;
-// use rule rewardsMultiClaimUserRewards;
+use rule rewardsMultiClaimRewardsAsExpected;
+use rule rewardsMultiClaimRewardsOnBehalfAsExpected;
+use rule rewardsMultiClaimRewardsToSelfAsExpected;
+use rule rewardsMultiClaimUserRewards;
