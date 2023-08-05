@@ -1,3 +1,24 @@
+rule availableRewardsCountProperties(method f, env e, calldataarg args, address asset, address reward) filtered {
+   f -> !f.isView && !harnessFunction(f)
+}{
+    uint256 _availableRewardsCount = getAvailableRewardsCount(asset);
+    address[] _rewards = getRewardsByAsset(e, asset);
+
+    require _rewards.length == _availableRewardsCount;
+
+    f@withrevert(e, args);
+
+    uint256 availableRewardsCount_ = getAvailableRewardsCount(asset);
+    address[] rewards_ = getRewardsByAsset(e, asset);
+
+    assert availableRewardsCount_ == rewards_.length;
+    assert availableRewardsCount_ >= _availableRewardsCount;
+    assert availableRewardsCount_ >  _availableRewardsCount
+      =>   ( e.msg.sender == EMISSION_MANAGER() )
+      &&   ( f.selector == sig:configureAssets(RewardsDataTypes.RewardsConfigInput[]).selector );
+}
+
+
 rule claimRewardsReverts(env e, address[] assets, uint256 amount, address to, address reward){
   uint256 claimed = 0;
 

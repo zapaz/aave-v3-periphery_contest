@@ -22,12 +22,12 @@ rule setupAssetsAdded(method f, env e, calldataarg args) filtered {
    f -> !f.isView && !harnessFunction(f)
 } {
     address[] _assetsList = getAssetsList();
-    uint256 _assetsListLength = _assetsList.length;
+    mathint _assetsListLength = _assetsList.length;
 
     f@withrevert(e, args);
 
     address[] assetsList_ = getAssetsList();
-    uint256 assetsListLength_ = assetsList_.length;
+    mathint assetsListLength_ = assetsList_.length;
 
     assert assetsListLength_ != _assetsListLength
       =>   ( e.msg.sender == EMISSION_MANAGER() )
@@ -38,7 +38,7 @@ rule setupAssetsImmutable(method f, env e, calldataarg args) filtered {
    f -> !f.isView && !harnessFunction(f)
 } {
     address[] _assetsList = getAssetsList();
-    uint256 _assetsListLength = _assetsList.length;
+    mathint _assetsListLength = _assetsList.length;
     uint256 index;
     require index < _assetsListLength;
 
@@ -47,7 +47,7 @@ rule setupAssetsImmutable(method f, env e, calldataarg args) filtered {
     f@withrevert(e, args);
 
     address[] assetsList_ = getAssetsList();
-    uint256 assetsListLength_ = assetsList_.length;
+    mathint assetsListLength_ = assetsList_.length;
     address asset_ = assetsList_[index];
 
     assert assetsListLength_ >= _assetsListLength;

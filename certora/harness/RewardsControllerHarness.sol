@@ -23,21 +23,21 @@ contract RewardsControllerHarness is RewardsController {
         uint32 currentTimestamp,
         uint32 lastUpdateTimestamp,
         uint88 emissionPerSecond,
-        uint104 index,
+        uint104 assetIndex,
         uint104 userIndex,
         uint128 userAccrued,
         uint256 userBalance,
         uint256 totalSupply,
         uint256 assetUnit
     ) external view returns (uint256) {
-        uint256 userPendingIndex = uint256(index - userIndex);
+        uint256 userPendingIndex = uint256(assetIndex - userIndex);
         uint256 userPending = uint256(userBalance * userPendingIndex / assetUnit);
 
         uint256 deltaTime = uint256(currentTimestamp - lastUpdateTimestamp);
         uint256 deltaEmission = uint256(emissionPerSecond * deltaTime * assetUnit);
         uint256 deltaIndex = uint256(deltaEmission / totalSupply);
 
-        uint256 claimable = uint256(userPending + userAccrued + userBalance * deltaIndex * assetUnit);
+        uint256 claimable = uint256(userPending + userAccrued + userBalance * deltaIndex / assetUnit);
 
         return claimable;
     }
@@ -48,6 +48,10 @@ contract RewardsControllerHarness is RewardsController {
 
     function getAssetsList() external view returns (address[] memory) {
         return _assetsList;
+    }
+
+    function getAssetIndexNew(address asset, address reward) external view returns (uint256 newIndex) {
+        (, newIndex) = this.getAssetIndex(asset, reward);
     }
 
     // returns an asset's reward index

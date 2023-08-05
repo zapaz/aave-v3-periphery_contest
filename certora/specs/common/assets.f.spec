@@ -1,6 +1,6 @@
 function assetsOne(address asset) returns bool {
     address[] assets = getAssetsList();
-    uint256 decimals = getAssetDecimals(asset);
+    mathint decimals = getAssetDecimals(asset);
 
     return assets.length == 1
         && assets[0] == asset

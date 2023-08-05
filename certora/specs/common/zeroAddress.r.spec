@@ -1,29 +1,29 @@
 rule zeroAddressAssetUnchanged(method f, env e, calldataarg args) filtered {
-   f -> !f.isView
+   f -> !f.isView && !harnessFunction(f)
 }{
   require e.msg.sender != 0;
 
-  uint _balance = AToken.balanceOf(e, 0);
+  mathint _balance = AToken.balanceOf(e, 0);
   f@withrevert(e, args);
-  uint balance_ = AToken.balanceOf(e, 0);
+  mathint balance_ = AToken.balanceOf(e, 0);
 
   assert balance_ == _balance;
 }
 
 rule zeroAddressRewardUnchanged(method f, env e, calldataarg args) filtered {
-   f -> !f.isView
+   f -> !f.isView && !harnessFunction(f)
 }{
   require e.msg.sender != 0;
 
-  uint _balance = Reward.balanceOf(e, 0);
+  mathint _balance = Reward.balanceOf(e, 0);
   f@withrevert(e, args);
-  uint balance_ = Reward.balanceOf(e, 0);
+  mathint balance_ = Reward.balanceOf(e, 0);
 
   assert balance_ == _balance;
 }
 
 rule zeroAddressStrategyCannotBeSet(method f, env e, calldataarg args) filtered {
-   f -> !f.isView
+   f -> !f.isView && !harnessFunction(f)
 }{
   address _transferStrategy = getTransferStrategy(Reward);
   f@withrevert(e, args);

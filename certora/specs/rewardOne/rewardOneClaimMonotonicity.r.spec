@@ -1,26 +1,43 @@
 // more claimable with more time
-rule rewardOneClaimMonotonicityTime() {
-    require rewardsOneAssetOne(AToken, Reward);
+rule rewardOneClaimMonotonicityTime(address[] assets, address user, address reward) {
+    require rewardsOneAssetOne(assets[0], reward);
 
-    env _e; env e_; address user; address[] assets;
+    env _e; env e_;
+    mathint _claimable = getUserRewards(_e, assets, user, reward);
+    mathint claimable_ = getUserRewards(e_, assets, user, reward);
 
-    uint256 _claimable = getUserRewards(_e, assets, user, Reward);
-    uint256 claimable_ = getUserRewards(e_, assets, user, Reward);
-
-     assert _e.block.timestamp <= e_.block.timestamp => _claimable <= claimable_;
+    assert _e.block.timestamp <= e_.block.timestamp => _claimable <= claimable_;
 }
 
 // more claimable with more balance
-rule rewardOneClaimMonotonicityAssets(env e, address user) {
+rule rewardOneClaimMonotonicityAssets(env e, address user, uint256 amount) {
     require rewardsOneAssetOne(AToken, Reward);
+    address[] assets = getAssetsList();
 
-    uint256 amount;
-    address[] assets;
-
-    uint256 _claimable = getUserRewards(e, assets, user, Reward);
+    mathint _claimable = getUserRewards(e, assets, user, Reward);
     AToken.transfer(e, user, amount);
-    uint256 claimable_ = getUserRewards(e, assets, user, Reward);
+    mathint claimable_ = getUserRewards(e, assets, user, Reward);
 
     assert _claimable <= claimable_;
 }
 
+// more claimable with more emission
+rule rewardOneClaimMonotonicityEmission(env e, address user, uint256 amount) {
+    require rewardsOneAssetOne(AToken, Reward);
+    address[] assets = getAssetsList();
+    address[] rewards = getRewardsByAsset(AToken);
+
+    uint88[] _emissionsPerSeconds;
+    uint88 _emissionsPerSecond = _emissionsPerSeconds[0];
+    setEmissionPerSecond(e, AToken, rewards, _emissionsPerSeconds);
+
+    mathint _claimable = getUserRewards(e, assets, user, Reward);
+
+    uint88[] emissionsPerSeconds_;
+    uint88 emissionsPerSecond_ = emissionsPerSeconds_[0];
+    setEmissionPerSecond(e, AToken, rewards, emissionsPerSeconds_);
+
+    mathint claimable_ = getUserRewards(e, assets, user, Reward);
+
+    assert emissionsPerSecond_ >= _emissionsPerSecond => claimable_ >= _claimable;
+}

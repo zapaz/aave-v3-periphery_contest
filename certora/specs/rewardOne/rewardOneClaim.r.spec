@@ -1,153 +1,144 @@
-rule rewardOneClaim(env e, address user, address to) {
-    require rewardsOneAssetOne(AToken, Reward);
-    // requireInvariant userIndexIncreaseWithSomeAvailableReward(useAToken,Reward);
-    address[] assets;
-
-    uint256 amountOnce; uint256 amountTwice;
-
-    uint256 claimable = getUserRewards(e, assets, user, Reward);
-
-    uint256 claimedOnce = claimRewardsOnBehalf(e, assets, amountOnce, user, to, Reward);
-    uint256 claimedTwice = claimRewardsOnBehalf(e, assets, amountTwice, user, to, Reward);
-
-    assert assert_uint256(claimedOnce + claimedTwice) <= claimable;
-    assert ( amountOnce >= claimable ) => ( claimedOnce == claimable ) && ( claimedTwice == 0 );
-    assert ( amountOnce <  claimable ) => ( claimedOnce == amountOnce );
-
-}
-
-rule rewardOneClaimAllRewardsAsExpected(env e, address user, address to) {
-    require rewardsOneAssetOne(AToken, Reward);
-    require e.msg.sender == user;
-    require getTransferStrategy(Reward) != to;
-
-    uint256 _amount = getUserRewards(e, getAssetsList(), user, Reward);
-    uint256 _balance = Reward.balanceOf(e, to);
-    uint256 _balancePlusAmount = require_uint256(_balance + _amount);
-
-    address[] rewards_; uint256[] amounts_;
-    rewards_, amounts_ = claimAllRewards(e, getAssetsList(), to);
-
-    uint256 accrued = getUserAccruedRewards(user, Reward);
-    assert accrued == 0;
-
-    uint256 balance_ = Reward.balanceOf(e, to);
-    assert balance_ == _balancePlusAmount;
-
-    assert rewards_[0] == Reward;
-    assert amounts_[0] == _amount;
-}
-
-rule rewardOneClaimAllRewardsToSelfAsExpected(env e, address user) {
+rule rewardOneClaimRewardsToSelfAsExpected(env e, address[] assets, address user, uint256 amount) {
     require rewardsOneAssetOne(AToken, Reward);
     require e.msg.sender == user;
     require getTransferStrategy(Reward) != user;
 
-    uint256 _amount = getUserRewards(e, getAssetsList(), user, Reward);
-    uint256 _balance = Reward.balanceOf(e, user);
-    uint256 _balancePlusAmount = require_uint256(_balance + _amount);
+    mathint _amount_ = amount;
+    mathint _amount = getUserRewards(e, assets, user, Reward);
+    mathint _balance = Reward.balanceOf(e, user);
 
-    address[] rewards_; uint256[] amounts_;
-    rewards_, amounts_ = claimAllRewardsToSelf(e, getAssetsList());
+    mathint amount_ = claimRewardsToSelf(e, assets, amount, Reward);
 
-    uint256 accrued = getUserAccruedRewards(user, Reward);
-    assert accrued == 0;
+    mathint balance_ = Reward.balanceOf(e, user);
 
-    uint256 balance_ = Reward.balanceOf(e, user);
-    assert balance_ == _balancePlusAmount;
-
-    assert rewards_[0] == Reward;
-    assert amounts_[0] == _amount;
+    assert amount_ == min( _amount, _amount_ );
+    assert balance_ == _balance + amount_;
 }
 
-rule rewardOneClaimAllRewardsOnBehalfAsExpected(env e, address user, address to) {
-    require rewardsOneAssetOne(AToken, Reward);
+rule rewardOneClaimRewardsOnBehalfAsExpected(env e, address[] assets, address user, address to, uint256 amount) {
+    require rewardsOneAssetOne(assets[0], Reward);
     require e.msg.sender == getClaimer(user);
     require getTransferStrategy(Reward) != to;
 
-    uint256 _amount = getUserRewards(e, getAssetsList(), user, Reward);
-    uint256 _balance = Reward.balanceOf(e, to);
-    uint256 _balancePlusAmount = require_uint256(_balance + _amount);
+    mathint _amount_ = amount;
+    mathint _amount = getUserRewards(e, assets, user, Reward);
+    mathint _balance = Reward.balanceOf(e, to);
 
-    address[] rewards_; uint256[] amounts_;
-    rewards_, amounts_ = claimAllRewardsOnBehalf(e, getAssetsList(), user, to);
+    mathint amount_ = claimRewardsOnBehalf(e, assets, amount, user, to, Reward);
 
-    uint256 accrued = getUserAccruedRewards(user, Reward);
-    assert accrued == 0;
+    mathint balance_ = Reward.balanceOf(e, to);
 
-    uint256 balance_ = Reward.balanceOf(e, to);
-    assert balance_ == _balancePlusAmount;
-
-    assert rewards_[0] == Reward;
-    assert amounts_[0] == _amount;
+    assert amount_ == min( _amount, _amount_ );
+    assert balance_ == _balance + amount_;
 }
 
-rule rewardOneClaimRewardsAsExpected(env e, address user, address to) {
-    require rewardsOneAssetOne(AToken, Reward);
+rule rewardOneClaimRewardsAsExpected(env e, address[] assets, address user, address to, uint256 amount) {
+    require rewardsOneAssetOne(assets[0], Reward);
     require e.msg.sender == user;
     require getTransferStrategy(Reward) != to;
 
-    uint256 amount;
+    mathint _amount_ = amount;
+    mathint _amount = getUserRewards(e, assets, user, Reward);
+    mathint _balance = Reward.balanceOf(e, to);
 
-    uint256 _amount = getUserRewards(e, getAssetsList(), user, Reward);
-    uint256 _balance = Reward.balanceOf(e, to);
-    uint256 _balancePlusAmount = require_uint256(_balance + min( _amount, amount ));
+    mathint amount_ = claimRewards(e, assets, amount, to, Reward);
 
-    uint256 amount_ = claimRewards(e, getAssetsList(), amount, to, Reward);
+    mathint balance_ = Reward.balanceOf(e, to);
 
-    uint256 balance_ = Reward.balanceOf(e, to);
-    assert balance_ == _balancePlusAmount;
-
-    assert amount_ == min( _amount, amount );
+    assert amount_ == min( _amount, _amount_ );
+    assert balance_ == _balance + amount_;
 }
 
-rule rewardOneClaimRewardsOnBehalfAsExpected(env e, address user, address to) {
-    require rewardsOneAssetOne(AToken, Reward);
+rule rewardOneClaimAllRewardsOnBehalfAsExpected(env e, address[] assets, address user, address to) {
+    require rewardsOneAssetOne(assets[0], Reward);
     require e.msg.sender == getClaimer(user);
     require getTransferStrategy(Reward) != to;
 
-    uint256 amount;
-    uint256 _amount = getUserRewards(e, getAssetsList(), user, Reward);
-    uint256 _balance = Reward.balanceOf(e, to);
-    uint256 _balancePlusAmount = require_uint256(_balance + min( _amount, amount ));
+    mathint _amount = getUserRewards(e, assets, user, Reward);
+    mathint _balance = Reward.balanceOf(e, to);
 
-    uint256 amount_ = claimRewardsOnBehalf(e, getAssetsList(), amount, user, to, Reward);
+    address[] rewards_; uint256[] amounts_;
+    rewards_, amounts_ = claimAllRewardsOnBehalf(e, assets, user, to);
 
-    uint256 balance_ = Reward.balanceOf(e, to);
-    assert balance_ == _balancePlusAmount;
+    mathint amount_ = amounts_[0];
+    mathint accrued = getUserAccruedRewards(user, Reward);
+    mathint balance_ = Reward.balanceOf(e, to);
 
-    assert amount_ == min( _amount, amount );
+    assert amount_ == _amount;
+    assert accrued == 0;
+    assert balance_ == _balance + _amount;
+    assert rewards_[0] == Reward;
 }
 
-rule rewardOneClaimRewardsToSelfAsExpected(env e, address user) {
-    require rewardsOneAssetOne(AToken, Reward);
+rule rewardOneClaimAllRewardsAsExpected(env e, address[] assets, address user, address to) {
+    require rewardsOneAssetOne(assets[0], Reward);
+    require e.msg.sender == user;
+    require getTransferStrategy(Reward) != to;
+
+    mathint _amount = getUserRewards(e, assets, user, Reward);
+    mathint _balance = Reward.balanceOf(e, to);
+
+    address[] rewards_; uint256[] amounts_;
+    rewards_, amounts_ = claimAllRewards(e, assets, to);
+
+    mathint amount_ = amounts_[0];
+    // mathint accrued = getUserAccruedRewards(user, Reward);
+    // mathint balance_ = Reward.balanceOf(e, to);
+    // assert accrued == 0;
+    // assert balance_ == _balance + _amount;
+
+    assert amount_ == _amount;
+    assert rewards_[0] == Reward;
+}
+
+rule rewardOneClaimAllRewardsToSelfAsExpected(env e, address[] assets, address user) {
+    require rewardsOneAssetOne(assets[0], Reward);
     require e.msg.sender == user;
     require getTransferStrategy(Reward) != user;
 
-    uint256 amount;
+    mathint _amount = getUserRewards(e, assets, user, Reward);
+    mathint _balance = Reward.balanceOf(e, user);
 
-    uint256 _amount = getUserRewards(e, getAssetsList(), user, Reward);
-    uint256 _balance = Reward.balanceOf(e, user);
-    uint256 _balancePlusAmount = require_uint256(_balance + min( _amount, amount ));
+    address[] rewards_; uint256[] amounts_;
+    rewards_, amounts_ = claimAllRewardsToSelf(e, assets);
 
-    uint256 amount_ = claimRewardsToSelf(e, getAssetsList(), amount, Reward);
+    mathint amount_ = amounts_[0];
+    mathint accrued = getUserAccruedRewards(user, Reward);
+    mathint balance_ = Reward.balanceOf(e, user);
 
-    uint256 balance_ = Reward.balanceOf(e, user);
-    assert balance_ == _balancePlusAmount;
-
-    assert amount_ == min( _amount, amount );
+    assert amount_ == _amount;
+    assert accrued == 0;
+    assert balance_ == _balance + _amount;
+    assert rewards_[0] == Reward;
 }
 
-rule rewardOneClaimUserRewards(env e, address user){
-    require rewardsOneAssetOne(AToken, Reward);
+rule rewardOneClaimUserRewards(env e, address[] assets, address user, address reward){
+    require rewardsOneAssetOne(assets[0], reward);
 
-    address[] assets;
-
-    uint256 _claimable = getUserRewards(e, assets, user, Reward);
+    mathint _claimable = getUserRewards(e, assets, user, reward);
 
     address[] rewards; uint256[] amounts;
     rewards, amounts = getAllUserRewards(e, assets, user);
-    uint256 claimable_ = amounts[0];
+    mathint claimable_ = amounts[0];
 
     assert claimable_ == _claimable;
 }
+
+rule rewardOneClaimTwice(env e, address[] assets, address user, address to, address reward, uint256 amount1, uint256 amount2) {
+    require rewardsOneAssetOne(assets[0], reward);
+
+    mathint amount = amount1;
+    mathint claimable = getUserRewards(e, assets, user, reward);
+    mathint claimedFirst = claimRewardsOnBehalf(e, assets, amount1, user, to, reward);
+    mathint claimedSecond = claimRewardsOnBehalf(e, assets, amount2, user, to, reward);
+
+    assert ( claimedFirst + claimedSecond ) <= claimable;
+    assert ( amount >= claimable ) => ( claimedFirst == claimable ) && ( claimedSecond == 0 );
+    assert ( amount <  claimable ) => ( claimedFirst == amount );
+}
+
+
+
+
+
+

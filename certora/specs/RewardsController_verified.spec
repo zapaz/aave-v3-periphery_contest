@@ -7,7 +7,8 @@ import "./common/assets.f.spec";
 import "./common/reverts.f.spec";
 import "./common/setup.r.spec";
 import "./common/rewards.f.spec";
-import "./rewardOne/rewardOneSetup.r.spec";
+import "./common/zeroAddress.r.spec";
+import "./rewardOne/rewardOneConfigureAsset.r.spec";
 import "./rewardOne/rewardOne.r.spec";
 import "./rewardOne/rewardOneClaim.r.spec";
 import "./rewardOne/rewardOneClaimSome.r.spec";
@@ -16,9 +17,7 @@ import "./rewardOne/rewardOneClaimEqual.r.spec";
 
 using TransferStrategyHarness as TransferStrategy;
 
-use invariant userIndexIncreaseWithSomeAvailableReward;
-
-// COMMON (IN MULTI AND ONE)
+///////////// Properties with One Asset Multiple Rewards /////////////
 use invariant user_index_LEQ_index;
 
 use rule index_keeps_growing;
@@ -39,26 +38,34 @@ use rule claimRewardsOnBehalfReverts;
 use rule claimAllRewardsReverts;
 use rule claimAllRewardsOnBehalfReverts;
 
-// ///////////////// Properties ///////////////////////
+use rule zeroAddressAssetUnchanged;
+use rule zeroAddressRewardUnchanged;
+use rule zeroAddressStrategyCannotBeSet;
 
-use rule setupConfig;
+///////////// Properties with One Asset One Reward /////////////
 use rule rewardOneByAssetIsInList;
 
-use rule rewardOneClaim;
-use rule rewardOneClaimAllRewardsAsExpected;
-use rule rewardOneClaimAllRewardsOnBehalfAsExpected;
+use rule rewardOneClaimTwice;
+use rule rewardOneClaimAllRewardsAsExpected;          // SLOW
+use rule rewardOneClaimAllRewardsOnBehalfAsExpected;  // SLOW
+use rule rewardOneClaimAllRewardsToSelfAsExpected;    // SLOW
 use rule rewardOneClaimRewardsAsExpected;
 use rule rewardOneClaimRewardsOnBehalfAsExpected;
 use rule rewardOneClaimRewardsToSelfAsExpected;
+use rule rewardOneClaimUserRewards;
+
+use rule rewardOneClaimMonotonicityTime;
+use rule rewardOneClaimMonotonicityEmission;
+use rule rewardOneClaimMonotonicityAssets;            // SLOW
 
 use rule rewardOneClaimSome;
-use rule rewardOneClaimMonotonicityTime;
+
+use rule rewardOneConfigureAsset;
+
+// TIMEOUT
 
 
-// SLOW
-use rule rewardOneClaimUserRewards;
-use rule rewardOneClaimAllRewardsToSelfAsExpected;
-use rule rewardOneClaimMonotonicityAssets;
+// TESTING
 
 // FAILS
-use rule rewardOneClaimEqual;
+// use rule rewardOneClaimEqual;

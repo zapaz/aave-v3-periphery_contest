@@ -1,7 +1,7 @@
-rule setupConfig(env e, calldataarg args) {
+rule rewardOneConfigureAsset(env e, calldataarg args) {
     address[] _assets = getAssetsList();
 
-    require EMISSION_MANAGER() == currentContract;   // must be emmission manager to call external function harnessed
+    require EMISSION_MANAGER() == currentContract;   // must be emission manager to call external function harnessed
     require getlastUpdateTimestamp(AToken,Reward) == 0;
     require getAvailableRewardsCount(AToken) == 0;
     require getAssetDecimals(AToken) == 0;

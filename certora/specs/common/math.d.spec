@@ -1,2 +1,2 @@
-definition min(uint256 a, uint256 b) returns uint256 = ( a <= b ? a : b );
-definition max(uint256 a, uint256 b) returns uint256 = ( a >= b ? a : b );
+definition min(mathint a, mathint b) returns mathint = ( a <= b ? a : b );
+definition max(mathint a, mathint b) returns mathint = ( a >= b ? a : b );

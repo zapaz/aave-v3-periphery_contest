@@ -1,7 +1,9 @@
-rule rewardsMultiByAssetAreInList(method f, env e, calldataarg arg) {
-  require rewardsMultiAssetOne(AToken, Reward, RewardB);
+rule rewardsTwoByAssetAreInList(method f, env e, calldataarg args) filtered {
+    f -> !f.isView && !harnessFunction(f)
+} {
+  require rewardsTwoAssetOne(AToken, Reward, RewardB);
 
-  f@withrevert(e,arg);
+  f@withrevert(e,args);
 
   address[] rewardsByAsset_ = getRewardsByAsset(AToken);
   address[] rewardsList_ = getRewardsList();

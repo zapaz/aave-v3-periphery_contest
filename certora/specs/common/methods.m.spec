@@ -19,6 +19,7 @@ methods {
   function configureAsset(address,address,address) external                      envfree;
   function rewardOracle()                          external returns (address)    envfree;
   function getlastUpdateTimestamp(address,address) external returns (uint256)    envfree;
+  function getAssetIndexNew(address,address)       external returns (uint256)    envfree;
 
   // More AToken
   function _.mint(address,uint128)                 external                      envfree;
