@@ -1,5 +1,5 @@
 import "methods/Methods_base.spec";
-import "common/methods.m.spec";
+import "methods/Methods_more.spec";
 
 /*
 shows one approach of simplifying the rule for dealing with timeouts.
@@ -29,7 +29,7 @@ rule monotonicityOverTimeOneAsset(address user, address reward) {
     address[] assets;
     require (e1.block.timestamp < e2.block.timestamp);
 
-    require getlastUpdateTimestamp(assets[0],reward) <= e1.block.timestamp;
+    require getLastUpdateTimestamp(assets[0],reward) <= e1.block.timestamp;
     require ( assets.length  == 1);
     assert getUserRewards(e1, assets, user, reward) <=  getUserRewards(e2, assets, user, reward);
 }
@@ -37,7 +37,7 @@ rule monotonicityOverTimeOneAsset(address user, address reward) {
 //same rule but under some more simplification
 function simplify_start(env e, address asset, address reward) {
     require getAssetDecimals(asset) == 6;
-    require getlastUpdateTimestamp(asset,reward) == e.block.timestamp;
+    require getLastUpdateTimestamp(asset,reward) == e.block.timestamp;
 }
 rule monotonicityOverTime_simpleStart(address user, address reward) {
 

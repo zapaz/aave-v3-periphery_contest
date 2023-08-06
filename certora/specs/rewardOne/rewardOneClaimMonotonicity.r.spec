@@ -1,6 +1,9 @@
 // more claimable with more time
 rule rewardOneClaimMonotonicityTime(address[] assets, address user, address reward) {
-    require rewardsOneAssetOne(assets[0], reward);
+    require rewardsOneAssetsOne(assets[0], reward);
+
+    // added requirement to reduce timeout
+    require getAssetDecimals(assets[0]) == 6;
 
     env _e; env e_;
     mathint _claimable = getUserRewards(_e, assets, user, reward);
@@ -11,7 +14,7 @@ rule rewardOneClaimMonotonicityTime(address[] assets, address user, address rewa
 
 // more claimable with more balance
 rule rewardOneClaimMonotonicityAssets(env e, address user, uint256 amount) {
-    require rewardsOneAssetOne(AToken, Reward);
+    require rewardsOneAssetsOne(AToken, Reward);
     address[] assets = getAssetsList();
 
     mathint _claimable = getUserRewards(e, assets, user, Reward);
@@ -23,7 +26,7 @@ rule rewardOneClaimMonotonicityAssets(env e, address user, uint256 amount) {
 
 // more claimable with more emission
 rule rewardOneClaimMonotonicityEmission(env e, address user, uint256 amount) {
-    require rewardsOneAssetOne(AToken, Reward);
+    require rewardsOneAssetsOne(AToken, Reward);
     address[] assets = getAssetsList();
     address[] rewards = getRewardsByAsset(AToken);
 

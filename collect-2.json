@@ -1,0 +1,31 @@
+{
+    "mutants": [
+        {
+            "gambit_mutant": {
+                "description": "AssignmentMutation",
+                "diff": "--- original\n+++ mutant\n@@ -290,7 +290,8 @@\n         }\n         uint256 rewardAmount = _assets[asset].rewards[rewardsList[j]].usersData[user].accrued;\n         if (rewardAmount != 0) {\n-          claimedAmounts[j] += rewardAmount;\n+          /// AssignmentMutation(`rewardAmount` |==> `1`) of: `claimedAmounts[j] += rewardAmount;`\n+          claimedAmounts[j] += 1;\n           _assets[asset].rewards[rewardsList[j]].usersData[user].accrued = 0;\n         }\n       }\n",
+                "directory": "gambit_out/mutants/1",
+                "filename": "gambit_out/mutants/1/contracts/rewards/RewardsController.sol",
+                "id": "1",
+                "original_filename": "contracts/rewards/RewardsController.sol"
+            },
+            "link": "https://prover.certora.com/jobStatus/56914/12990ccb87c945f98edf232a79e3e6e6?anonymousKey=a31fe6328b3836bb45bd09b1c1c56ff3c4cdf442",
+            "run_directory": ".certora_internal/23_08_05_09_52_05_600/.certora_sources",
+            "success": true
+        },
+        {
+            "gambit_mutant": {
+                "description": "RequireMutation",
+                "diff": "--- original\n+++ mutant\n@@ -299,7 +299,8 @@\n     (uint256 oldIndex, uint256 newIndex) = _getAssetIndex(rewardData, totalSupply, assetUnit);\n     bool indexUpdated;\n     if (newIndex != oldIndex) {\n-      require(newIndex <= type(uint104).max, 'INDEX_OVERFLOW');\n+      /// RequireMutation(`newIndex <= type(uint104).max` |==> `false`) of: `require(newIndex <= type(uint104).max, 'INDEX_OVERFLOW');`\n+      require(false, 'INDEX_OVERFLOW');\n       indexUpdated = true;\n \n       //optimization: storing one after another saves one SSTORE\n",
+                "directory": "gambit_out/mutants/2",
+                "filename": "gambit_out/mutants/2/contracts/rewards/RewardsDistributor.sol",
+                "id": "2",
+                "original_filename": "contracts/rewards/RewardsDistributor.sol"
+            },
+            "link": "https://prover.certora.com/jobStatus/56914/7e41cbeb57de4af58e8aa32edcb64ee0?anonymousKey=04d2eb5899b2e9edcb648549b76a409bccad9695",
+            "run_directory": ".certora_internal/23_08_05_09_52_05_827/.certora_sources",
+            "success": true
+        }
+    ],
+    "original": "https://prover.certora.com/jobStatus/56914/c9db919c7ea14538a15d4e393cfcf602?anonymousKey=d8403c546da051c3de445d88964d3ddf9980f9e1"
+}

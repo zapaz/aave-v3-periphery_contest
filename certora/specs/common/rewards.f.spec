@@ -10,7 +10,7 @@ function rewardsOne(address reward) returns bool {
         && rewardsList[0] == reward;
 }
 
-function rewardsOneAssetOne(address asset, address reward) returns bool {
+function rewardsOneAssetsOne(address asset, address reward) returns bool {
     address[] rewardsByAsset = getRewardsByAsset(asset);
 
     return assetsOne(asset)

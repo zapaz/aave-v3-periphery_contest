@@ -2,14 +2,14 @@ rule rewardOneConfigureAsset(env e, calldataarg args) {
     address[] _assets = getAssetsList();
 
     require EMISSION_MANAGER() == currentContract;   // must be emission manager to call external function harnessed
-    require getlastUpdateTimestamp(AToken,Reward) == 0;
+    require getLastUpdateTimestamp(AToken,Reward) == 0;
     require getAvailableRewardsCount(AToken) == 0;
     require getAssetDecimals(AToken) == 0;
     require AToken.decimals(e) > 0;
     require _assets.length == 0;
     require isRewardEnabled(Reward) == false;
 
-    configureAsset(AToken, Reward, TransferStrategy);
+    configureAsset(e, AToken, Reward, TransferStrategy);
 
     address[] assets_ = getAssetsList();
     address asset_     = assets_[0];

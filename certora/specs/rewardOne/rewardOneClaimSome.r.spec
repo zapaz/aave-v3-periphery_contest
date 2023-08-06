@@ -1,5 +1,5 @@
 rule rewardOneClaimSome(env e, address user) {
-    require rewardsOneAssetOne(AToken, Reward);
+    require rewardsOneAssetsOne(AToken, Reward);
 
     mathint currentTimestamp = e.block.timestamp;
     mathint totalSupply = AToken.totalSupply(e);

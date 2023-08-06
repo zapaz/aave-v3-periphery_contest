@@ -19,7 +19,7 @@ contract RewardsControllerHarness is RewardsController {
         rewardOracle = address(new RewardOracleHarness());
     }
 
-    function rewardCalculation(
+    function userRewardCalculate(
         uint32 currentTimestamp,
         uint32 lastUpdateTimestamp,
         uint88 emissionPerSecond,
@@ -29,7 +29,7 @@ contract RewardsControllerHarness is RewardsController {
         uint256 userBalance,
         uint256 totalSupply,
         uint256 assetUnit
-    ) external view returns (uint256) {
+    ) external pure returns (uint256) {
         uint256 userPendingIndex = uint256(assetIndex - userIndex);
         uint256 userPending = uint256(userBalance * userPendingIndex / assetUnit);
 
@@ -37,9 +37,36 @@ contract RewardsControllerHarness is RewardsController {
         uint256 deltaEmission = uint256(emissionPerSecond * deltaTime * assetUnit);
         uint256 deltaIndex = uint256(deltaEmission / totalSupply);
 
-        uint256 claimable = uint256(userPending + userAccrued + userBalance * deltaIndex / assetUnit);
+        uint256 claimable = uint256(userPending + userAccrued);
 
         return claimable;
+    }
+
+    function getRewardsByAssetLength(address asset) public view returns (uint256) {
+      return this.getRewardsByAsset(asset).length;
+    }
+    function getRewardsListLength() public view returns (uint256) {
+      return this.getRewardsList().length;
+    }
+
+    function getAssetRewardIndex(address asset, address reward) external view returns (uint256) {
+        return _assets[asset].rewards[reward].index;
+    }
+
+    function getAssetIndexNew(address asset, address reward) public view returns (uint104 index) {
+        (, uint256 newIndex) = this.getAssetIndex(asset, reward);
+        index = uint104(index);
+    }
+
+    function getRewardsDataHarness(address asset, address reward)
+        public
+        view
+        returns (uint104 index, uint88 emissionPerSecond, uint32 lastUpdateTimestamp, uint32 distributionEnd)
+    {
+        index = getAssetIndexNew(asset, reward);
+        emissionPerSecond = _assets[asset].rewards[reward].emissionPerSecond;
+        lastUpdateTimestamp = _assets[asset].rewards[reward].lastUpdateTimestamp;
+        distributionEnd = _assets[asset].rewards[reward].distributionEnd;
     }
 
     function isRewardEnabled(address reward) external view returns (bool) {
@@ -50,16 +77,7 @@ contract RewardsControllerHarness is RewardsController {
         return _assetsList;
     }
 
-    function getAssetIndexNew(address asset, address reward) external view returns (uint256 newIndex) {
-        (, newIndex) = this.getAssetIndex(asset, reward);
-    }
-
-    // returns an asset's reward index
-    function getAssetRewardIndex(address asset, address reward) external view returns (uint256) {
-        return _assets[asset].rewards[reward].index;
-    }
-
-    function getlastUpdateTimestamp(address asset, address reward) external view returns (uint256) {
+    function getLastUpdateTimestamp(address asset, address reward) external view returns (uint256) {
         return _assets[asset].rewards[reward].lastUpdateTimestamp;
     }
 

@@ -1,5 +1,6 @@
 import "./RewardsController_base.spec";
-import "./common/methods.m.spec";
+import "./methods/Methods_more.spec";
+import "./common/invariants.i.spec";
 import "./common/math.d.spec";
 import "./common/harness.d.spec";
 import "./common/assets.f.spec";
@@ -8,13 +9,18 @@ import "./common/rewards.f.spec";
 import "./common/claim.r.spec";
 import "./common/setup.r.spec";
 import "./common/zeroAddress.r.spec";
+import "./common/rewardsCalculate.f.spec";
 import "./rewardsTwo/rewardsTwoClaim.r.spec";
 import "./rewardsTwo/rewardsTwo.r.spec";
 
 using DummyERC20_rewardTokenB as RewardB;
 
+use invariant rewardEnabled;
+use invariant rewardsLength;
+
 ///////////// Properties with One Asset Multiple Rewards /////////////
 use invariant user_index_LEQ_index;
+use invariant timestamp;
 
 use rule index_keeps_growing;
 use rule noDoubleClaim;
@@ -53,5 +59,6 @@ use rule availableRewardsCountProperties;
 // use rule rewardsTwoClaimUserRewards;
 
 // TESTING
+use rule rewardTwoUserRewards;
 
 // FAILS
