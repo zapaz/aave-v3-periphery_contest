@@ -23,6 +23,7 @@ using TransferStrategyHarness as TransferStrategy;
 ///////////// Properties with One Asset Multiple Rewards /////////////
 use invariant user_index_LEQ_index;
 use invariant timestamp;
+use invariant rewardEnabled;
 
 use rule index_keeps_growing;
 use rule noDoubleClaim;
@@ -57,11 +58,11 @@ use rule rewardOneClaimRewardsOnBehalfAsExpected;
 
 use rule rewardOneClaimMonotonicityEmission;
 
-use rule rewardOneClaimSome;
 
 use rule rewardOneConfigureAsset;
 
 // TIMEOUT
+use rule rewardOneClaimSome;
 use rule rewardOneClaimAllRewardsToSelfAsExpected;
 use rule rewardOneClaimAllRewardsAsExpected;
 use rule rewardOneClaimMonotonicityTime;
@@ -72,5 +73,6 @@ use rule rewardOneClaimTwice;
 
 
 // TESTING
-
+// use rule rewardsLengthRule;
+// use invariant rewardsLength;
 // FAILS

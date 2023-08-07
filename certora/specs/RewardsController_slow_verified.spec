@@ -24,3 +24,4 @@ use rule rewardOneClaimMonotonicityAssets;
 use rule rewardOneClaimUserRewards;
 use rule rewardOneClaimRewardsToSelfAsExpected;
 use rule rewardOneClaimTwice;
+use rule rewardOneClaimSome;

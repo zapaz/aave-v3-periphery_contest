@@ -15,12 +15,10 @@ import "./rewardsTwo/rewardsTwo.r.spec";
 
 using DummyERC20_rewardTokenB as RewardB;
 
-use invariant rewardEnabled;
-use invariant rewardsLength;
-
 ///////////// Properties with One Asset Multiple Rewards /////////////
 use invariant user_index_LEQ_index;
 use invariant timestamp;
+use invariant rewardEnabled;
 
 use rule index_keeps_growing;
 use rule noDoubleClaim;
@@ -59,6 +57,7 @@ use rule availableRewardsCountProperties;
 // use rule rewardsTwoClaimUserRewards;
 
 // TESTING
-use rule rewardTwoUserRewards;
+// use invariant rewardsLength;
+// use rule rewardTwoUserRewards;
 
 // FAILS

@@ -22,8 +22,8 @@ methods {
   function getLastUpdateTimestamp(address,address)  external returns (uint256)                             envfree;
   function getRewardsListLength()                   external returns (uint256)                             envfree;
 
+  function getRewardsByAssetLength(address)         external returns (uint256)                             envfree;
   function getRewardsDataHarness(address, address)  external returns (uint104, uint88, uint32, uint32);
-  function getRewardsByAssetLength(address)         external returns (uint256);
   function getAssetIndexNew(address,address)        external returns (uint104);
   function configureAsset(address,address,address)  external;
 
