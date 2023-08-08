@@ -1,3 +1,8 @@
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure claimed rewards are equal to expected rewards
+// - claimRewardsToSelf equals getUserRewards
+// - balance of reward increased by min of expected rewards and amount requested
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardOneClaimRewardsToSelfAsExpected(env e, address[] assets, address user, uint256 amount) {
     require rewardsOneAssetsOne(AToken, Reward);
     require e.msg.sender == user;
@@ -15,6 +20,11 @@ rule rewardOneClaimRewardsToSelfAsExpected(env e, address[] assets, address user
     assert balance_ == _balance + amount_;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure claimed rewards are equal to expected rewards
+// - claimRewardsOnBehalf equals getUserRewards
+// - balance of reward increased by min of expected rewards and amount requested
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardOneClaimRewardsOnBehalfAsExpected(env e, address[] assets, address user, address to, uint256 amount) {
     require rewardsOneAssetsOne(assets[0], Reward);
     require e.msg.sender == getClaimer(user);
@@ -32,6 +42,11 @@ rule rewardOneClaimRewardsOnBehalfAsExpected(env e, address[] assets, address us
     assert balance_ == _balance + amount_;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure claimed rewards are equal to expected rewards
+// - claimRewards equals getUserRewards
+// - balance of reward increased by min of expected rewards and amount requested
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardOneClaimRewardsAsExpected(env e, address[] assets, address user, address to, uint256 amount) {
     require rewardsOneAssetsOne(assets[0], Reward);
     require e.msg.sender == user;
@@ -49,6 +64,13 @@ rule rewardOneClaimRewardsAsExpected(env e, address[] assets, address user, addr
     assert balance_ == _balance + amount_;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure claimed rewards are equal to expected rewards
+// - claimAllRewardsOnBehalf equals getUserRewards
+// - balance of reward increased by expected rewards
+// - accrued is set to zero after claiming
+// - reward is Reward as expected
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardOneClaimAllRewardsOnBehalfAsExpected(env e, address[] assets, address user, address to) {
     require rewardsOneAssetsOne(assets[0], Reward);
     require e.msg.sender == getClaimer(user);
@@ -70,6 +92,13 @@ rule rewardOneClaimAllRewardsOnBehalfAsExpected(env e, address[] assets, address
     assert rewards_[0] == Reward;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure claimed rewards are equal to expected rewards
+// - claimAllRewards equals getUserRewards
+// - balance of reward increased by expected rewards
+// - accrued is set to zero after claiming
+// - reward is Reward as expected
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardOneClaimAllRewardsAsExpected(env e, address[] assets, address user, address to) {
     require rewardsOneAssetsOne(assets[0], Reward);
     require e.msg.sender == user;
@@ -82,15 +111,22 @@ rule rewardOneClaimAllRewardsAsExpected(env e, address[] assets, address user, a
     rewards_, amounts_ = claimAllRewards(e, assets, to);
 
     mathint amount_ = amounts_[0];
-    // mathint accrued = getUserAccruedRewards(user, Reward);
-    // mathint balance_ = Reward.balanceOf(e, to);
-    // assert accrued == 0;
-    // assert balance_ == _balance + _amount;
+    mathint accrued = getUserAccruedRewards(user, Reward);
+    mathint balance_ = Reward.balanceOf(e, to);
 
     assert amount_ == _amount;
+    assert accrued == 0;
+    assert balance_ == _balance + _amount;
     assert rewards_[0] == Reward;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure claimed rewards are equal to expected rewards
+// - claimAllRewardsToSelf equals getUserRewards
+// - balance of reward increased by expected rewards
+// - accrued is set to zero after claiming
+// - reward is Reward as expected
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardOneClaimAllRewardsToSelfAsExpected(env e, address[] assets, address user) {
     require rewardsOneAssetsOne(assets[0], Reward);
     require e.msg.sender == user;
@@ -112,6 +148,9 @@ rule rewardOneClaimAllRewardsToSelfAsExpected(env e, address[] assets, address u
     assert rewards_[0] == Reward;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure getAllUserRewards is equal to getUserRewards for ONE asset ONE reward
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardOneClaimUserRewards(env e, address[] assets, address user, address reward){
     require rewardsOneAssetsOne(assets[0], reward);
 
@@ -124,6 +163,13 @@ rule rewardOneClaimUserRewards(env e, address[] assets, address user, address re
     assert claimable_ == _claimable;
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure claiming twice (in same block) cannot increase amount claimed
+// - sum of two claims is less than expected claim
+// - if first amount more than claimable, first claim gets all rewards, second claim zero
+// - if first amount less than claimable, first claim gets exactly amount requested
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardOneClaimTwice(env e, address[] assets, address user, address to, address reward, uint256 amount1, uint256 amount2) {
     require rewardsOneAssetsOne(assets[0], reward);
 
@@ -134,7 +180,7 @@ rule rewardOneClaimTwice(env e, address[] assets, address user, address to, addr
 
     assert ( claimedFirst + claimedSecond ) <= claimable;
     assert ( amount >= claimable ) => ( claimedFirst == claimable ) && ( claimedSecond == 0 );
-    assert ( amount <  claimable ) => ( claimedFirst == amount );
+    assert ( amount <= claimable ) => ( claimedFirst == amount );
 }
 
 

@@ -1,3 +1,6 @@
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure TWO rewards setlled with asset, are in global rewards list
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardsTwoByAssetAreInList(method f, env e, calldataarg args) filtered {
     f -> !f.isView && !harnessFunction(f)
 } {
@@ -12,6 +15,10 @@ rule rewardsTwoByAssetAreInList(method f, env e, calldataarg args) filtered {
   assert rewardsByAsset_[1] == rewardsList_[1];
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure claimable with ONE asset and TWO reward is as calculated
+// but timeout...
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardTwoUserRewards(env e, address[] assets, address user) {
     require rewardsTwoAssetOne(AToken, Reward, RewardB);
     require assets[0] == AToken;
@@ -24,12 +31,7 @@ rule rewardTwoUserRewards(env e, address[] assets, address user) {
     uint256 _claimable  = amounts[0];
     uint256 _claimableB = amounts[1];
 
-    // uint256 claimable_  = userRewardsCalculate(e, user, Reward);
     uint256 claimableB_ = userRewardsCalculate(e, user, RewardB);
-
-    // assert  claimable_ == _claimable;
     assert  claimableB_ == _claimableB;
-
-    // assert  rewards[0] == Reward;
     assert  rewards[1] == RewardB;
 }

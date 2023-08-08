@@ -1,3 +1,6 @@
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure asset balance cannot be changed
+/////////////////////////////////////////////////////////////////////////////////
 rule zeroAddressAssetUnchanged(method f, env e, calldataarg args) filtered {
    f -> !f.isView && !harnessFunction(f)
 }{
@@ -10,6 +13,9 @@ rule zeroAddressAssetUnchanged(method f, env e, calldataarg args) filtered {
   assert balance_ == _balance;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure reward of address zero cannot be changed
+/////////////////////////////////////////////////////////////////////////////////
 rule zeroAddressRewardUnchanged(method f, env e, calldataarg args) filtered {
    f -> !f.isView && !harnessFunction(f)
 }{
@@ -22,6 +28,9 @@ rule zeroAddressRewardUnchanged(method f, env e, calldataarg args) filtered {
   assert balance_ == _balance;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure transferStrategy cannot be set to zero
+/////////////////////////////////////////////////////////////////////////////////
 rule zeroAddressStrategyCannotBeSet(method f, env e, calldataarg args) filtered {
    f -> !f.isView && !harnessFunction(f)
 }{

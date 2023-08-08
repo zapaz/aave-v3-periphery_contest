@@ -1,8 +1,6 @@
-function rewardsCount (address asset) returns uint256 {
-    address[] rewards = getRewardsByAsset(asset);
-    return rewards.length;
-}
-
+/////////////////////////////////////////////////////////////////////////////////
+// Requirements for ONE reward
+/////////////////////////////////////////////////////////////////////////////////
 function rewardsOne(address reward) returns bool {
     address[] rewardsList = getRewardsList();
 
@@ -10,6 +8,9 @@ function rewardsOne(address reward) returns bool {
         && rewardsList[0] == reward;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Requirements for ONE reward ONE asset
+/////////////////////////////////////////////////////////////////////////////////
 function rewardsOneAssetsOne(address asset, address reward) returns bool {
     address[] rewardsByAsset = getRewardsByAsset(asset);
 
@@ -20,6 +21,9 @@ function rewardsOneAssetsOne(address asset, address reward) returns bool {
         && getAvailableRewardsCount(asset) == 1;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Requirements for TWO rewards
+/////////////////////////////////////////////////////////////////////////////////
 function rewardsTwo(address reward1, address reward2) returns bool {
     address[] rewardsList = getRewardsList();
 
@@ -28,6 +32,9 @@ function rewardsTwo(address reward1, address reward2) returns bool {
         && rewardsList[1] == reward2;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Requirements for TWO rewards ONE asset
+/////////////////////////////////////////////////////////////////////////////////
 function rewardsTwoAssetOne(address asset, address reward1, address reward2) returns bool {
     address[] rewardsByAsset = getRewardsByAsset(asset);
 

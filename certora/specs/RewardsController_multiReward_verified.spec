@@ -44,20 +44,13 @@ use rule zeroAddressStrategyCannotBeSet;
 
 ///////////// Properties with One Asset Two Rewards /////////////
 use rule rewardsTwoByAssetAreInList;
-
 use rule availableRewardsCountProperties;
 
-// TIMEOUT
-// use rule rewardsTwoClaimAllRewardsAsExpected;
-// use rule rewardsTwoClaimAllRewardsToSelfAsExpected;
-// use rule rewardsTwoClaimAllRewardsOnBehalfAsExpected;
-// use rule rewardsTwoClaimRewardsAsExpected;
-// use rule rewardsTwoClaimRewardsOnBehalfAsExpected;
-// use rule rewardsTwoClaimRewardsToSelfAsExpected;
-// use rule rewardsTwoClaimUserRewards;
-
-// TESTING
-// use invariant rewardsLength;
-// use rule rewardTwoUserRewards;
-
-// FAILS
+// OFTEN TIMEOUT
+use rule rewardsTwoClaimAllRewardsAsExpected;
+use rule rewardsTwoClaimAllRewardsToSelfAsExpected;
+use rule rewardsTwoClaimAllRewardsOnBehalfAsExpected;
+use rule rewardsTwoClaimRewardsAsExpected;
+use rule rewardsTwoClaimRewardsOnBehalfAsExpected;
+use rule rewardsTwoClaimRewardsToSelfAsExpected;
+use rule rewardsTwoClaimUserRewards;

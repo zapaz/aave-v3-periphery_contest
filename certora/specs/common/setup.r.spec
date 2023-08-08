@@ -1,9 +1,15 @@
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure asset is immutable
+// - any (non zero) asset in assetsList cannot be changed
+// - assetList length can only increase
+/////////////////////////////////////////////////////////////////////////////////
 rule setupAssetImmutable(method f, env e, calldataarg args) filtered {
    f -> !f.isView && !harnessFunction(f)
 } {
     address[] _assetsList = getAssetsList();
     uint256 _assetsListLength = _assetsList.length;
     uint256 index;
+    require _assetsListLength == 1;
     require index < _assetsListLength;
 
     address _asset = _assetsList[index];
@@ -18,6 +24,9 @@ rule setupAssetImmutable(method f, env e, calldataarg args) filtered {
     assert assetsListLength_ >= _assetsListLength;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure asset can only be added by Emmission manager via configureAssets function
+/////////////////////////////////////////////////////////////////////////////////
 rule setupAssetsAdded(method f, env e, calldataarg args) filtered {
    f -> !f.isView && !harnessFunction(f)
 } {
@@ -29,30 +38,18 @@ rule setupAssetsAdded(method f, env e, calldataarg args) filtered {
     address[] assetsList_ = getAssetsList();
     mathint assetsListLength_ = assetsList_.length;
 
-    assert assetsListLength_ != _assetsListLength
+    assert assetsListLength_ > _assetsListLength
       =>   ( e.msg.sender == EMISSION_MANAGER() )
       &&   ( f.selector == sig:configureAssets(RewardsDataTypes.RewardsConfigInput[]).selector );
 }
 
-rule setupAssetsImmutable(method f, env e, calldataarg args) filtered {
-   f -> !f.isView && !harnessFunction(f)
-} {
-    address[] _assetsList = getAssetsList();
-    mathint _assetsListLength = _assetsList.length;
-    uint256 index;
-    require index < _assetsListLength;
-
-    address _asset = _assetsList[index];
-
-    f@withrevert(e, args);
-
-    address[] assetsList_ = getAssetsList();
-    mathint assetsListLength_ = assetsList_.length;
-    address asset_ = assetsList_[index];
-
-    assert assetsListLength_ >= _assetsListLength;
-}
-
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure properties on asset config modifications
+// - emissionPerSecond can only be modified by Emission manager via
+//   configureAssets or setEmissionPerSecond functions
+// - distributionEnd_ can only be modified by Emission manager via
+//   configureAssets or setDistributionEnd functions
+/////////////////////////////////////////////////////////////////////////////////
 rule setupRewardModified(method f, env e, calldataarg args, address asset, address reward) filtered {
    f -> !f.isView && !harnessFunction(f)
 } {
@@ -76,6 +73,11 @@ rule setupRewardModified(method f, env e, calldataarg args, address asset, addre
       ||     ( f.selector == sig:setDistributionEnd(address,address,uint32).selector             ) );
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure transferStrategy can only be modified by Emmission manager
+//  via configureAssets or setTransferStrategy functions
+//  and that transferStrategy is not zero
+/////////////////////////////////////////////////////////////////////////////////
 rule setupTransferStrategy(method f, env e, calldataarg args, address reward) filtered {
    f -> !f.isView && !harnessFunction(f)
 }{
@@ -91,6 +93,10 @@ rule setupTransferStrategy(method f, env e, calldataarg args, address reward) fi
       ||     ( f.selector == sig:setTransferStrategy(address,address).selector                   ) );
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure rewardOracle can only be modified by Emmission manager
+//  via configureAssets or setRewardOracle functions
+/////////////////////////////////////////////////////////////////////////////////
 rule setupRewardOracle(method f, env e, calldataarg args, address reward) filtered {
    f -> !f.isView && !harnessFunction(f)
 }{
@@ -104,6 +110,9 @@ rule setupRewardOracle(method f, env e, calldataarg args, address reward) filter
       ||     ( f.selector == sig:setRewardOracle(address,address).selector                       ) );
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure claimer can only be modified by Emmission manager via setClaimer function
+/////////////////////////////////////////////////////////////////////////////////
 rule setupClaimer(method f, env e, calldataarg args, address user) filtered {
    f -> !f.isView && !harnessFunction(f)
 }{

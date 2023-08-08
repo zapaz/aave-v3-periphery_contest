@@ -19,7 +19,6 @@ import "./rewardOne/rewardOneUserRewards.r.spec";
 
 using TransferStrategyHarness as TransferStrategy;
 
-
 ///////////// Properties with One Asset Multiple Rewards /////////////
 use invariant user_index_LEQ_index;
 use invariant timestamp;
@@ -61,7 +60,7 @@ use rule rewardOneClaimMonotonicityEmission;
 
 use rule rewardOneConfigureAsset;
 
-// TIMEOUT
+// SOMETIMES TIMEOUT
 use rule rewardOneClaimSome;
 use rule rewardOneClaimAllRewardsToSelfAsExpected;
 use rule rewardOneClaimAllRewardsAsExpected;
@@ -72,7 +71,3 @@ use rule rewardOneClaimRewardsToSelfAsExpected;
 use rule rewardOneClaimTwice;
 
 
-// TESTING
-// use rule rewardsLengthRule;
-// use invariant rewardsLength;
-// FAILS

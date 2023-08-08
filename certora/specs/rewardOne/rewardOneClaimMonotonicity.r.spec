@@ -1,4 +1,6 @@
-// more claimable with more time
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure get more rewards with more time
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardOneClaimMonotonicityTime(address[] assets, address user, address reward) {
     require rewardsOneAssetsOne(assets[0], reward);
 
@@ -12,7 +14,9 @@ rule rewardOneClaimMonotonicityTime(address[] assets, address user, address rewa
     assert _e.block.timestamp <= e_.block.timestamp => _claimable <= claimable_;
 }
 
-// more claimable with more balance
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure get more rewards with more AToken
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardOneClaimMonotonicityAssets(env e, address user, uint256 amount) {
     require rewardsOneAssetsOne(AToken, Reward);
     address[] assets = getAssetsList();
@@ -24,7 +28,9 @@ rule rewardOneClaimMonotonicityAssets(env e, address user, uint256 amount) {
     assert _claimable <= claimable_;
 }
 
-// more claimable with more emission
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure get more rewards with more emission per second
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardOneClaimMonotonicityEmission(env e, address user, uint256 amount) {
     require rewardsOneAssetsOne(AToken, Reward);
     address[] assets = getAssetsList();

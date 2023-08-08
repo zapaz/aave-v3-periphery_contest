@@ -1,3 +1,7 @@
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure claimAllRewards is same as two getUserRewards , with ONE asset TWO rewards
+// but timeout...
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardsTwoClaimAllRewardsAsExpected(env e, address[] assets, address user, address to) {
     require rewardsTwoAssetOne(assets[0], Reward, RewardB);
     require e.msg.sender == user;
@@ -17,6 +21,10 @@ rule rewardsTwoClaimAllRewardsAsExpected(env e, address[] assets, address user, 
         && amount1_    == _amountB;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure claimAllRewardsToSelf is same as two getUserRewards , with ONE asset TWO rewards
+// but timeout...
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardsTwoClaimAllRewardsToSelfAsExpected(env e, address[] assets, address user) {
     require rewardsTwoAssetOne(assets[0], Reward, RewardB);
     require e.msg.sender == user;
@@ -35,7 +43,10 @@ rule rewardsTwoClaimAllRewardsToSelfAsExpected(env e, address[] assets, address 
         && amount0_    == _amount
         && amount1_    == _amountB;
 }
-
+/////////////////////////////////////////////////////////////////////////////////
+// Ensure claimAllRewardsOnBehalf is same as two getUserRewards , with ONE asset TWO rewards
+// but timeout...
+/////////////////////////////////////////////////////////////////////////////////
 rule rewardsTwoClaimAllRewardsOnBehalfAsExpected(env e, address[] assets, address user, address to) {
     require rewardsTwoAssetOne(assets[0], Reward, RewardB);
     require e.msg.sender == getClaimer(user);
@@ -53,52 +64,4 @@ rule rewardsTwoClaimAllRewardsOnBehalfAsExpected(env e, address[] assets, addres
         && rewards_[1] == RewardB
         && amount0_    == _amount
         && amount1_    == _amountB;
-}
-
-rule rewardsTwoClaimRewardsAsExpected(env e, address[] assets, address user, address to, uint256 amount) {
-    require rewardsTwoAssetOne(assets[0], Reward, RewardB);
-    require e.msg.sender == user;
-
-    mathint _amount_ = amount;
-
-    mathint _amount = getUserRewards(e, assets, user, Reward);
-    mathint amount_ = claimRewards(e, assets, amount, to, Reward);
-
-    assert amount_ == min( _amount, _amount_ );
-}
-
-rule rewardsTwoClaimRewardsOnBehalfAsExpected(env e, address[] assets, address user, address to, uint256 amount) {
-    require rewardsTwoAssetOne(assets[0], Reward, RewardB);
-    require e.msg.sender == getClaimer(user);
-
-    mathint _amount_ = amount;
-
-    mathint _amount = getUserRewards(e, assets, user, Reward);
-    mathint amount_ = claimRewardsOnBehalf(e, assets, amount, user, to, Reward);
-
-    assert amount_ == min( _amount, _amount_ );
-}
-
-rule rewardsTwoClaimRewardsToSelfAsExpected(env e, address[] assets, address user, uint256 amount) {
-    require rewardsTwoAssetOne(assets[0], Reward, RewardB);
-    require e.msg.sender == user;
-
-    mathint _amount_ = amount;
-
-    mathint _amount = getUserRewards(e, assets, user, Reward);
-    mathint amount_ = claimRewardsToSelf(e, assets, amount, Reward);
-
-    assert amount_ == min( _amount, _amount_ );
-}
-
-rule rewardsTwoClaimUserRewards(env e, address[] assets, address user){
-    require rewardsTwoAssetOne(AToken, Reward, RewardB);
-
-    mathint _claimable = getUserRewards(e, assets, user, Reward);
-
-    address[] rewards; uint256[] amounts;
-    rewards, amounts = getAllUserRewards(e, assets, user);
-    mathint claimable_ = amounts[0];
-
-    assert claimable_ == _claimable;
 }
