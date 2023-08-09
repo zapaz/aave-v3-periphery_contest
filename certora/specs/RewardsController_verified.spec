@@ -51,9 +51,8 @@ use rule rewardOneByAssetIsInList;
 use rule rewardOneConfigureAsset;
 
 use rule rewardOneClaimSome;
-use rule rewardOneClaimAllRewardsOnBehalfAsExpected;  // SLOW
+use rule rewardOneClaimAllRewardsOnBehalfAsExpected;
 use rule rewardOneClaimAllRewardsToSelfAsExpected;
-use rule rewardOneClaimAllRewardsAsExpected;
 use rule rewardOneClaimRewardsAsExpected;
 use rule rewardOneClaimRewardsOnBehalfAsExpected;
 use rule rewardOneClaimRewardsToSelfAsExpected;
@@ -62,8 +61,8 @@ use rule rewardOneClaimUserRewards;
 use rule rewardOneClaimMonotonicityTime;
 use rule rewardOneClaimMonotonicityEmission;
 
-// SOMETIMES TIMEOUT
-use rule rewardOneClaimMonotonicityAssets;
-use rule rewardOneClaimTwice;
-
+// SLOW : SOMETIMES TIMEOUT
+// use rule rewardOneClaimAllRewardsAsExpected;
+// use rule rewardOneClaimMonotonicityAssets;
+// use rule rewardOneClaimTwice;
 

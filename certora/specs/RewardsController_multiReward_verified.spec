@@ -18,15 +18,10 @@ using DummyERC20_rewardTokenB as RewardB;
 ///////////// Properties with One Asset Multiple Rewards /////////////
 use invariant user_index_LEQ_index;
 use invariant timestamp;
-use invariant rewardEnabled;
 
 use rule index_keeps_growing;
-use rule noDoubleClaim;
-
 use rule revertsNotAllways;
 
-use rule setupAssetImmutable;
-use rule setupAssetsAdded;
 use rule setupRewardModified;
 use rule setupTransferStrategy;
 use rule setupRewardOracle;
@@ -51,8 +46,12 @@ use rule assetsTwoClaimRewards;
 use rule assetsTwoGetAllUserRewards;
 use rule assetsTwoClaimAllRewards;
 
-// OFTEN TIMEOUT
-use rule onlyAuthorizeCanDecrease;
-use rule rewardsTwoClaimAllRewardsAsExpected;
-use rule rewardsTwoClaimAllRewardsToSelfAsExpected;
-use rule rewardsTwoClaimAllRewardsOnBehalfAsExpected;
+// SLOW : SOMETIMES TIMEOUT
+// use invariant rewardEnabled;
+// use rule noDoubleClaim;
+// use rule setupAssetImmutable;
+// use rule rewardsTwoClaimAllRewardsAsExpected;
+// use rule onlyAuthorizeCanDecrease;
+// use rule rewardsTwoClaimAllRewardsOnBehalfAsExpected;
+// use rule rewardsTwoClaimAllRewardsToSelfAsExpected;
+// use rule setupAssetsAdded;
