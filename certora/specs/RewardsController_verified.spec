@@ -47,26 +47,23 @@ use rule zeroAddressStrategyCannotBeSet;
 
 ///////////// Properties with One Asset One Reward /////////////
 use rule rewardOneUserRewards;
-
 use rule rewardOneByAssetIsInList;
-
-use rule rewardOneClaimAllRewardsOnBehalfAsExpected;  // SLOW
-use rule rewardOneClaimRewardsAsExpected;
-use rule rewardOneClaimRewardsOnBehalfAsExpected;
-
-use rule rewardOneClaimMonotonicityEmission;
-
-
 use rule rewardOneConfigureAsset;
 
-// SOMETIMES TIMEOUT
 use rule rewardOneClaimSome;
+use rule rewardOneClaimAllRewardsOnBehalfAsExpected;  // SLOW
 use rule rewardOneClaimAllRewardsToSelfAsExpected;
 use rule rewardOneClaimAllRewardsAsExpected;
-use rule rewardOneClaimMonotonicityTime;
-use rule rewardOneClaimMonotonicityAssets;
-use rule rewardOneClaimUserRewards;
+use rule rewardOneClaimRewardsAsExpected;
+use rule rewardOneClaimRewardsOnBehalfAsExpected;
 use rule rewardOneClaimRewardsToSelfAsExpected;
+use rule rewardOneClaimUserRewards;
+
+use rule rewardOneClaimMonotonicityTime;
+use rule rewardOneClaimMonotonicityEmission;
+
+// SOMETIMES TIMEOUT
+use rule rewardOneClaimMonotonicityAssets;
 use rule rewardOneClaimTwice;
 
 
