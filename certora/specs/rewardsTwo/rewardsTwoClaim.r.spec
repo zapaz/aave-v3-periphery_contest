@@ -3,7 +3,7 @@
 // but timeout...
 /////////////////////////////////////////////////////////////////////////////////
 rule rewardsTwoClaimAllRewardsAsExpected(env e, address[] assets, address user, address to) {
-    require rewardsTwoAssetOne(assets[0], Reward, RewardB);
+    require rewardsTwoAssetsOne(assets[0], Reward, RewardB);
     require e.msg.sender == user;
 
     mathint _amount = getUserRewards(e, assets, user, Reward);
@@ -26,7 +26,7 @@ rule rewardsTwoClaimAllRewardsAsExpected(env e, address[] assets, address user, 
 // but timeout...
 /////////////////////////////////////////////////////////////////////////////////
 rule rewardsTwoClaimAllRewardsToSelfAsExpected(env e, address[] assets, address user) {
-    require rewardsTwoAssetOne(assets[0], Reward, RewardB);
+    require rewardsTwoAssetsOne(assets[0], Reward, RewardB);
     require e.msg.sender == user;
 
     mathint _amount = getUserRewards(e, assets, user, Reward);
@@ -48,7 +48,7 @@ rule rewardsTwoClaimAllRewardsToSelfAsExpected(env e, address[] assets, address 
 // but timeout...
 /////////////////////////////////////////////////////////////////////////////////
 rule rewardsTwoClaimAllRewardsOnBehalfAsExpected(env e, address[] assets, address user, address to) {
-    require rewardsTwoAssetOne(assets[0], Reward, RewardB);
+    require rewardsTwoAssetsOne(assets[0], Reward, RewardB);
     require e.msg.sender == getClaimer(user);
 
     mathint _amount = getUserRewards(e, assets, user, Reward);

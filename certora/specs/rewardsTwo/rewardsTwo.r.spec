@@ -4,7 +4,7 @@
 rule rewardsTwoByAssetAreInList(method f, env e, calldataarg args) filtered {
     f -> !f.isView && !harnessFunction(f)
 } {
-  require rewardsTwoAssetOne(AToken, Reward, RewardB);
+  require rewardsTwoAssetsOne(AToken, Reward, RewardB);
 
   f@withrevert(e,args);
 
@@ -20,7 +20,7 @@ rule rewardsTwoByAssetAreInList(method f, env e, calldataarg args) filtered {
 // but timeout...
 /////////////////////////////////////////////////////////////////////////////////
 rule rewardTwoUserRewards(env e, address[] assets, address user) {
-    require rewardsTwoAssetOne(AToken, Reward, RewardB);
+    require rewardsTwoAssetsOne(AToken, Reward, RewardB);
     require assets[0] == AToken;
     require assets.length == 1;
     require getAssetDecimals(AToken) == 6;

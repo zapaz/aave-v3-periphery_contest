@@ -2,7 +2,11 @@
 // Ensure get more rewards with more time
 /////////////////////////////////////////////////////////////////////////////////
 rule rewardOneClaimMonotonicityTime(address[] assets, address user, address reward) {
-    require rewardsOneAssetsOne(assets[0], reward);
+    require assets.length == 1;
+
+    address[] rewards = getRewardsByAsset(assets[0]);
+    require rewards.length == 1;
+    require rewards[0] == Reward;
 
     // added requirement to reduce timeout
     require getAssetDecimals(assets[0]) == 6;
@@ -17,24 +21,31 @@ rule rewardOneClaimMonotonicityTime(address[] assets, address user, address rewa
 /////////////////////////////////////////////////////////////////////////////////
 // Ensure get more rewards with more AToken
 /////////////////////////////////////////////////////////////////////////////////
-rule rewardOneClaimMonotonicityAssets(env e, address user, uint256 amount) {
-    require rewardsOneAssetsOne(AToken, Reward);
-    address[] assets = getAssetsList();
+rule rewardOneClaimMonotonicityAssets(env e, address[] assets, address user, uint256 amount) {
+    require assets.length == 1;
+    require assets[0] == AToken;
+
+    address[] rewards = getRewardsByAsset(AToken);
+    require rewards.length == 1;
+    require rewards[0] == Reward;
 
     mathint _claimable = getUserRewards(e, assets, user, Reward);
     AToken.transfer(e, user, amount);
     mathint claimable_ = getUserRewards(e, assets, user, Reward);
 
-    assert _claimable <= claimable_;
+    assert claimable_ >= _claimable;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 // Ensure get more rewards with more emission per second
 /////////////////////////////////////////////////////////////////////////////////
-rule rewardOneClaimMonotonicityEmission(env e, address user, uint256 amount) {
-    require rewardsOneAssetsOne(AToken, Reward);
-    address[] assets = getAssetsList();
+rule rewardOneClaimMonotonicityEmission(env e, address[] assets, address user, uint256 amount) {
+    require assets.length == 1;
+    require assets[0] == AToken;
+
     address[] rewards = getRewardsByAsset(AToken);
+    require rewards.length == 1;
+    require rewards[0] == Reward;
 
     uint88[] _emissionsPerSeconds;
     uint88 _emissionsPerSecond = _emissionsPerSeconds[0];

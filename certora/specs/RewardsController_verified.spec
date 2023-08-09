@@ -4,7 +4,6 @@ import "./common/invariants.i.spec";
 import "./common/math.d.spec";
 import "./common/harness.d.spec";
 import "./common/claim.r.spec";
-import "./common/assets.f.spec";
 import "./common/reverts.f.spec";
 import "./common/setup.r.spec";
 import "./common/rewards.f.spec";

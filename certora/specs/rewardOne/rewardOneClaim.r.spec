@@ -101,6 +101,7 @@ rule rewardOneClaimAllRewardsOnBehalfAsExpected(env e, address[] assets, address
 /////////////////////////////////////////////////////////////////////////////////
 rule rewardOneClaimAllRewardsAsExpected(env e, address[] assets, address user, address to) {
     require rewardsOneAssetsOne(assets[0], Reward);
+
     require e.msg.sender == user;
     require getTransferStrategy(Reward) != to;
 
@@ -151,10 +152,20 @@ rule rewardOneClaimAllRewardsToSelfAsExpected(env e, address[] assets, address u
 /////////////////////////////////////////////////////////////////////////////////
 // Ensure getAllUserRewards is equal to getUserRewards for ONE asset ONE reward
 /////////////////////////////////////////////////////////////////////////////////
-rule rewardOneClaimUserRewards(env e, address[] assets, address user, address reward){
-    require rewardsOneAssetsOne(assets[0], reward);
+rule rewardOneClaimUserRewards(env e, address[] assets, address user){
+    // require rewardsOneAssetsOne(assets[0], reward);
+    require assets.length == 1;
+    require getAvailableRewardsCount(assets[0]) == 1;
 
-    mathint _claimable = getUserRewards(e, assets, user, reward);
+    address[] rewardsList = getRewardsList();
+    require rewardsList.length == 1;
+    require rewardsList[0] == Reward;
+
+    address[] rewardsByAsset = getRewardsByAsset(assets[0]);
+    require rewardsByAsset.length == 1;
+    require rewardsByAsset[0] == Reward;
+
+    mathint _claimable = getUserRewards(e, assets, user, Reward);
 
     address[] rewards; uint256[] amounts;
     rewards, amounts = getAllUserRewards(e, assets, user);
@@ -165,26 +176,39 @@ rule rewardOneClaimUserRewards(env e, address[] assets, address user, address re
 
 
 /////////////////////////////////////////////////////////////////////////////////
+// OK       37s https://prover.certora.com/output/56914/652340fee7a044599f5a3054ed89c63f/?anonymousKey=a0ab8951ce65871dcacfbef280f8394f474cc88b
+// OK       38s https://prover.certora.com/output/56914/c2f7d6ae9909452e9738178687522cb9/?anonymousKey=350747cd8766872f955a640fe434fcf7e35c1522
+// TIMOUT  739s https://prover.certora.com/output/56914/93073387cc7b4c4699650b24d70e1b46/?anonymousKey=f3ed401d017db4fdf66c3226a85d33c256128d1f
+// TIMOUT  679s https://prover.certora.com/output/56914/0e4aeb9356f94352bb1575418f42cad5/?anonymousKey=1e6aaf9497bf4a2770ddda8e2c219c42bfcb7cf9
+/////////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////////
 // Ensure claiming twice (in same block) cannot increase amount claimed
 // - sum of two claims is less than expected claim
 // - if first amount more than claimable, first claim gets all rewards, second claim zero
 // - if first amount less than claimable, first claim gets exactly amount requested
 /////////////////////////////////////////////////////////////////////////////////
 rule rewardOneClaimTwice(env e, address[] assets, address user, address to, address reward, uint256 amount1, uint256 amount2) {
-    require rewardsOneAssetsOne(assets[0], reward);
+    // require rewardsOneAssetsOne(assets[0], reward);
+
+    // address[] rewardsList = getRewardsList();
+    //     && rewardsList.length == 1
+    //     && rewardsList[0] == reward
+
+    require assets.length == 1;
+    require assets[0] == AToken;
+    address[] rewardsByAsset = getRewardsByAsset(assets[0]);
+
+    require rewardsByAsset[0] == Reward;
+    require rewardsByAsset.length == 1;
 
     mathint amount = amount1;
-    mathint claimable = getUserRewards(e, assets, user, reward);
-    mathint claimedFirst = claimRewardsOnBehalf(e, assets, amount1, user, to, reward);
-    mathint claimedSecond = claimRewardsOnBehalf(e, assets, amount2, user, to, reward);
+    mathint claimable = getUserRewards(e, assets, user, Reward);
+    mathint claimedFirst = claimRewardsOnBehalf(e, assets, amount1, user, to, Reward);
+    mathint claimedSecond = claimRewardsOnBehalf(e, assets, amount2, user, to, Reward);
 
     assert ( claimedFirst + claimedSecond ) <= claimable;
     assert ( amount >= claimable ) => ( claimedFirst == claimable ) && ( claimedSecond == 0 );
     assert ( amount <= claimable ) => ( claimedFirst == amount );
 }
-
-
-
-
-
-
