@@ -42,32 +42,37 @@ contract RewardsControllerHarness is RewardsController {
         return claimable;
     }
 
-    function getRewardsByAssetLength(address asset) public view returns (uint256) {
-      return this.getRewardsByAsset(asset).length;
-    }
-    function getRewardsListLength() public view returns (uint256) {
-      return this.getRewardsList().length;
-    }
-
     function getAssetRewardIndex(address asset, address reward) external view returns (uint256) {
         return _assets[asset].rewards[reward].index;
     }
 
-    function getAssetIndexNew(address asset, address reward) public view returns (uint104 index) {
-        (, uint256 newIndex) = this.getAssetIndex(asset, reward);
-        index = uint104(index);
-    }
+    // function getRewardsByAssetLength(address asset) public view returns (uint256) {
+    //     return this.getRewardsByAsset(asset).length;
+    // }
 
-    function getRewardsDataHarness(address asset, address reward)
-        public
-        view
-        returns (uint104 index, uint88 emissionPerSecond, uint32 lastUpdateTimestamp, uint32 distributionEnd)
-    {
-        index = getAssetIndexNew(asset, reward);
-        emissionPerSecond = _assets[asset].rewards[reward].emissionPerSecond;
-        lastUpdateTimestamp = _assets[asset].rewards[reward].lastUpdateTimestamp;
-        distributionEnd = _assets[asset].rewards[reward].distributionEnd;
-    }
+    // function getRewardsListLength() public view returns (uint256) {
+    //     return this.getRewardsList().length;
+    // }
+    //
+    // function getAssetIndexNew(address asset, address reward) public view returns (uint104 index) {
+    //     (, uint256 newIndex) = this.getAssetIndex(asset, reward);
+    //     index = uint104(index);
+    // }
+    //
+    // function getRewardsDataHarness(address asset, address reward)
+    //     public
+    //     view
+    //     returns (uint104 index, uint88 emissionPerSecond, uint32 lastUpdateTimestamp, uint32 distributionEnd)
+    // {
+    //     index = getAssetIndexNew(asset, reward);
+    //     emissionPerSecond = _assets[asset].rewards[reward].emissionPerSecond;
+    //     lastUpdateTimestamp = _assets[asset].rewards[reward].lastUpdateTimestamp;
+    //     distributionEnd = _assets[asset].rewards[reward].distributionEnd;
+    // }
+    //
+    // function getEmissionPerSecond(address asset, address reward) external view returns (uint256) {
+    //     return _assets[asset].rewards[reward].emissionPerSecond;
+    // }
 
     function isRewardEnabled(address reward) external view returns (bool) {
         return _isRewardEnabled[reward];
@@ -85,12 +90,8 @@ contract RewardsControllerHarness is RewardsController {
         return _assets[asset].availableRewardsCount;
     }
 
-    function getEmissionPerSecond(address asset, address reward) external view returns (uint256) {
-        return _assets[asset].rewards[reward].emissionPerSecond;
-    }
-
-    function createConfigAsset(address asset, address reward, address transferStrategy)
-        public
+    function _createConfigAsset(address asset, address reward, address transferStrategy)
+        internal
         returns (RewardsDataTypes.RewardsConfigInput memory config)
     {
         config.asset = asset;
@@ -101,9 +102,13 @@ contract RewardsControllerHarness is RewardsController {
 
     function configureAsset(address asset, address reward, address transferStrategy) external {
         RewardsDataTypes.RewardsConfigInput[] memory configs = new RewardsDataTypes.RewardsConfigInput[](1);
-        configs[0] = createConfigAsset(asset, reward, transferStrategy);
+        configs[0] = _createConfigAsset(asset, reward, transferStrategy);
 
         this.configureAssets(configs);
+    }
+
+    function getUserAccruedReward(uint256 i, address user, address reward) public view returns (uint256) {
+        return _assets[_assetsList[i]].rewards[reward].usersData[user].accrued;
     }
 
     function isContract(address account) external view returns (bool) {

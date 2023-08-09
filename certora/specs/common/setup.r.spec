@@ -9,7 +9,7 @@ rule setupAssetImmutable(method f, env e, calldataarg args) filtered {
     address[] _assetsList = getAssetsList();
     uint256 _assetsListLength = _assetsList.length;
     uint256 index;
-    require _assetsListLength == 1;
+    require _assetsListLength <= 2;
     require index < _assetsListLength;
 
     address _asset = _assetsList[index];
@@ -32,7 +32,8 @@ rule setupAssetsAdded(method f, env e, calldataarg args) filtered {
 } {
     address[] _assetsList = getAssetsList();
     mathint _assetsListLength = _assetsList.length;
-
+    require _assetsListLength <= 2;
+    
     f@withrevert(e, args);
 
     address[] assetsList_ = getAssetsList();

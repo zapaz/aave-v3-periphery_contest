@@ -189,15 +189,10 @@ rule rewardOneClaimUserRewards(env e, address[] assets, address user){
 // - if first amount more than claimable, first claim gets all rewards, second claim zero
 // - if first amount less than claimable, first claim gets exactly amount requested
 /////////////////////////////////////////////////////////////////////////////////
-rule rewardOneClaimTwice(env e, address[] assets, address user, address to, address reward, uint256 amount1, uint256 amount2) {
-    // require rewardsOneAssetsOne(assets[0], reward);
-
-    // address[] rewardsList = getRewardsList();
-    //     && rewardsList.length == 1
-    //     && rewardsList[0] == reward
-
+rule rewardOneClaimTwice(env e, address[] assets, address user, address to, uint256 amount1, uint256 amount2) {
     require assets.length == 1;
     require assets[0] == AToken;
+
     address[] rewardsByAsset = getRewardsByAsset(assets[0]);
 
     require rewardsByAsset[0] == Reward;

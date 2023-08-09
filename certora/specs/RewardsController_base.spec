@@ -29,7 +29,7 @@ import "methods/Methods_base.spec";
         env e;
         //arbitrary array of any length (might be constrained due to loop unrolling )
         address[] assets;
-        require assets.length == 1;
+        require assets.length <= 2;
 
         address to;
         claimAllRewards(e, assets, to);
@@ -45,6 +45,8 @@ import "methods/Methods_base.spec";
 
         address user; address reward;
         uint256 before = getUserAccruedRewards(user, reward);
+        address[] assets = getAssetsList();
+        require assets.length <= 2;
 
         env e;
         calldataarg args;

@@ -11,6 +11,7 @@ import "./common/zeroAddress.r.spec";
 import "./common/rewardsCalculate.f.spec";
 import "./rewardsTwo/rewardsTwoClaim.r.spec";
 import "./rewardsTwo/rewardsTwo.r.spec";
+import "./assetsTwo/assetsTwo.r.spec";
 
 using DummyERC20_rewardTokenB as RewardB;
 
@@ -21,7 +22,6 @@ use invariant rewardEnabled;
 
 use rule index_keeps_growing;
 use rule noDoubleClaim;
-use rule onlyAuthorizeCanDecrease;
 
 use rule revertsNotAllways;
 
@@ -45,7 +45,14 @@ use rule zeroAddressStrategyCannotBeSet;
 use rule rewardsTwoByAssetAreInList;
 use rule availableRewardsCountProperties;
 
+///////////// Properties with Two Assets one Reward /////////////
+use rule assetsTwoGetUserAccruedRewards;
+use rule assetsTwoClaimRewards;
+use rule assetsTwoGetAllUserRewards;
+use rule assetsTwoClaimAllRewards;
+
 // OFTEN TIMEOUT
+use rule onlyAuthorizeCanDecrease;
 use rule rewardsTwoClaimAllRewardsAsExpected;
 use rule rewardsTwoClaimAllRewardsToSelfAsExpected;
 use rule rewardsTwoClaimAllRewardsOnBehalfAsExpected;
